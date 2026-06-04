@@ -1,0 +1,61 @@
+---
+name: University College Dublin
+description: University College Dublin public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/ucd/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      UCD has no central developer portal, but a real, verifiable
+      machine-readable footprint exists in its library and cultural-heritage
+      systems. Confirmed live: the GitHub org, duchas.ie, digital.ucd.ie, the
+      Research Repository, and the Dúchas API docs at docs.gaois.ie. The Dúchas
+      API base returns HTTP 500 on a bare request (key/params required) which
+      confirms it is live but gated. The data.ucd.ie host (cited as the IIIF
+      image base in third-party docs) did not resolve during probing, and the
+      digital.ucd.ie research/index.php docs page is now 404 — so IIIF and
+      geospatial endpoints are documented but not all directly reachable from
+      published URLs. No endpoints were fabricated; gated/unreachable items are
+      flagged below.
+    endpoints:
+      - url: https://www.ucd.ie/
+        status: 403
+        note: Official site, blocks scripted user agents (bot protection); resolves in browser.
+      - url: https://github.com/University-College-Dublin
+        status: 200
+        note: Official GitHub org exists; no public members listed.
+      - url: https://researchrepository.ucd.ie/
+        status: 405
+        note: DSpace-CRIS repository live; root returns 405 to HEAD-style probe.
+      - url: https://researchrepository.ucd.ie/oai/request?verb=Identify
+        status: 405
+        note: OAI-PMH endpoint; documented harvesting interface for the repository.
+      - url: https://libguides.ucd.ie/RRU/usage
+        status: 200
+        note: LibGuide documenting OAI-PMH and DSpace REST access for the repository.
+      - url: https://digital.ucd.ie/
+        status: 200
+        note: UCD Digital Library home, live.
+      - url: https://digital.ucd.ie/help/
+        status: 200
+        note: Help/developer topics; describes IIIF, Geospatial, and unAPI data services.
+      - url: https://digital.ucd.ie/research/index.php
+        status: 404
+        note: Previously-cited developer/research docs page no longer resolves.
+      - url: https://www.duchas.ie/
+        status: 200
+        note: National Folklore Collection public site, live.
+      - url: https://www.duchas.ie/api/v0.5
+        status: 500
+        note: Dúchas API base live but requires API key and parameters.
+      - url: https://docs.gaois.ie
+        status: 200
+        note: Current Dúchas API documentation (moved from archived GitHub repo).
+      - url: https://github.com/gaois/DuchasAPI-docs
+        status: 200
+        note: Archived Dúchas API developer docs; points to docs.gaois.ie.
+      - url: https://data.ucd.ie/
+        status: 0
+        note: Cited IIIF/geospatial image base in third-party docs; did not resolve during probing.

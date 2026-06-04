@@ -1,0 +1,107 @@
+---
+aid: ucd
+name: University College Dublin
+description: >-
+  University College Dublin (UCD) is Ireland's largest university and ranks
+  #126 in the QS World University Rankings 2025. Its public, machine-readable
+  footprint is concentrated in library and cultural-heritage systems rather
+  than a central developer portal: the UCD Digital Library exposes IIIF Image
+  and Presentation APIs plus a Geospatial Data API and unAPI endpoint, the
+  DSpace-based Research Repository UCD offers OAI-PMH harvesting and a REST
+  API, and the National Folklore Collection held at UCD is served via the
+  Dúchas API. There is no unified, self-service institutional API program;
+  most administrative and identity systems are gated behind institutional
+  affiliation.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/ucd/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Ireland
+  - Library
+  - Digital Library
+  - IIIF
+  - Open Access
+  - Cultural Heritage
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: ucd:digital-library-iiif
+    name: UCD Digital Library Image & Presentation API (IIIF)
+    description: >-
+      The UCD Digital Library Data Services expose IIIF Image API 2.0 and
+      Presentation API 2.0 endpoints serving images and manifests for digitized
+      cultural-heritage objects and collections, consumable by IIIF clients
+      such as Mirador. Objects are addressed by namespaced internal identifiers
+      (e.g. ivrla:31286).
+    humanURL: https://digital.ucd.ie/help/
+    tags: [ Digital Library, IIIF, Images, Cultural Heritage ]
+    properties:
+      - type: Documentation
+        url: https://digital.ucd.ie/help/
+  - aid: ucd:digital-library-geospatial
+    name: UCD Digital Library Geospatial Data API
+    description: >-
+      Geospatial Data API for the UCD Digital Library, providing boundary and
+      search data for map visualisations (used with LeafletJS) via geoFilter
+      and geoBounds query parameters, alongside an unAPI metadata endpoint.
+    humanURL: https://digital.ucd.ie/help/
+    tags: [ Digital Library, Geospatial, Maps, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://digital.ucd.ie/help/
+  - aid: ucd:research-repository
+    name: Research Repository UCD (DSpace OAI-PMH / REST)
+    description: >-
+      Research Repository UCD is the institution's green open-access scholarly
+      repository, built on DSpace-CRIS. It provides an OAI-PMH harvesting
+      interface and the DSpace REST API for programmatic access to publications
+      and theses metadata.
+    humanURL: https://libguides.ucd.ie/RRU/usage
+    baseURL: https://researchrepository.ucd.ie/oai/request
+    tags: [ Open Access, Repository, OAI-PMH, DSpace, Research ]
+    properties:
+      - type: Documentation
+        url: https://libguides.ucd.ie/RRU/usage
+  - aid: ucd:duchas
+    name: Dúchas API (National Folklore Collection, UCD)
+    description: >-
+      The Dúchas API exposes published content from the National Folklore
+      Collection held at University College Dublin, returning JSON across the
+      CBÉ, CBÉS, CBÉG and CBÉD databases. Requests require an API key passed
+      via the X-Api-Key header, apiKey query parameter, or HTTP Basic auth.
+    humanURL: https://docs.gaois.ie
+    baseURL: https://www.duchas.ie/api/v0.5
+    tags: [ Cultural Heritage, Folklore, JSON, Authentication ]
+    properties:
+      - type: Documentation
+        url: https://docs.gaois.ie
+      - type: GitHub
+        url: https://github.com/gaois/DuchasAPI-docs
+      - type: Authentication
+        url: https://docs.gaois.ie
+common:
+  - type: Website
+    url: https://www.ucd.ie/
+  - type: GitHub
+    url: https://github.com/University-College-Dublin
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-college-dublin/
+  - type: DeveloperPortal
+    url: https://digital.ucd.ie/help/
+  - type: Plans
+    url: plans/ucd-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/ucd-rate-limits.yml
+  - type: FinOps
+    url: finops/ucd-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
