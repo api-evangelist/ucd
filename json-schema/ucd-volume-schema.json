@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucd/main/json-schema/ucd-volume-schema.json",
+  "title": "Duchas Volume",
+  "description": "A manuscript volume from the Main Manuscript Collection (CBE) or Schools' Collection (CBES) of the National Folklore Collection, UCD.",
+  "type": "object",
+  "properties": {
+    "ID": { "type": "integer" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "DateModified": { "type": "string", "format": "date-time" },
+    "VolumeNumber": { "type": "string" },
+    "Type": { "type": "string", "enum": ["bound-volume", "copybook-package", "volume"], "description": "Schools' Collection only." },
+    "Status": { "type": "integer", "description": "Editorial status (privileged)." },
+    "Pages": { "type": "array", "items": { "$ref": "#/$defs/Page" } },
+    "Parts": { "type": "array", "items": { "$ref": "#/$defs/Part" } }
+  },
+  "required": ["ID"],
+  "$defs": {
+    "Page": {
+      "type": "object",
+      "properties": {
+        "ID": { "type": "integer" },
+        "PageNumber": { "type": "string" },
+        "ListingOrder": { "type": "string" },
+        "TitlePage": { "type": "boolean" },
+        "ImageFileName": { "type": "string" },
+        "Sensitive": { "type": "boolean", "description": "Privileged." }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "properties": {
+        "ID": { "type": "integer" },
+        "ListingOrder": { "type": "string" },
+        "Title": { "type": "string" },
+        "Extract": { "type": "string" },
+        "FirstPageID": { "type": "integer" },
+        "LastPageID": { "type": "integer" },
+        "ContentType": { "type": "string", "enum": ["SEAN", "CÍN-LAE", "CEIST", "COMH"] },
+        "ExtraInfoStatus": { "type": "string", "enum": ["EDIT", "PUB"] }
+      }
+    },
+    "Part": {
+      "type": "object",
+      "properties": {
+        "ID": { "type": "integer" },
+        "ListingOrder": { "type": "integer" },
+        "TitlePages": { "type": "integer" },
+        "ExtraInfoStatus": { "type": "string", "enum": ["EDIT", "PUB"] },
+        "Items": { "type": "array", "items": { "$ref": "#/$defs/Item" } }
+      }
+    }
+  }
+}

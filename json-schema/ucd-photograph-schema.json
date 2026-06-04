@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucd/main/json-schema/ucd-photograph-schema.json",
+  "title": "Duchas Photograph",
+  "description": "A photograph record from the Photographic Collection (CBEG) of the National Folklore Collection, UCD.",
+  "type": "object",
+  "properties": {
+    "ID": { "type": "integer" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "DateModified": { "type": "string", "format": "date-time" },
+    "EditorsPick": { "type": "string", "format": "date-time" },
+    "ReferenceNumber": { "type": "string" },
+    "Status": { "type": "integer", "description": "Editorial status 0-4 (privileged)." },
+    "Sensitive": { "type": "boolean", "description": "Privileged." },
+    "Digitized": { "type": "boolean" },
+    "Copyright": { "type": "string", "enum": ["CBE", "OTH", "NOT", "UNK"] },
+    "Condition": { "type": "integer", "enum": [0, 1, 2] },
+    "ConditionDescription": { "type": "string" },
+    "HandbookTopic": { "$ref": "#/$defs/HandbookTopic" },
+    "Date": { "$ref": "#/$defs/Date" },
+    "Photographer": { "$ref": "#/$defs/Person" },
+    "RelevantPersons": { "type": "array", "items": { "$ref": "#/$defs/Person" } },
+    "Counties": { "type": "array", "items": { "$ref": "#/$defs/County" } },
+    "LocationsIreland": { "type": "array", "items": { "$ref": "#/$defs/LocationIreland" } },
+    "Countries": { "type": "array", "items": { "$ref": "#/$defs/Country" } },
+    "ArchivedDescriptionStatus": { "type": "string", "enum": ["EDIT", "PUB"] },
+    "ArchivedDescription": { "type": "string" },
+    "ExtraInfoStatus": { "type": "string", "enum": ["EDIT", "PUB"] },
+    "ExtraInfoEN": { "type": "string" },
+    "ExtraInfoGA": { "type": "string" },
+    "Formats": { "type": "array", "items": { "$ref": "#/$defs/Format" } }
+  },
+  "required": ["ID"],
+  "$defs": {
+    "Coordinates": {
+      "type": "object",
+      "properties": {
+        "Latitude": { "type": "number" },
+        "Longitude": { "type": "number" }
+      }
+    },
+    "County": {
+      "type": "object",
+      "properties": {
+        "LogainmID": { "type": "integer" },
+        "NameEN": { "type": "string" },
+        "NameGA": { "type": "string" },
+        "QualifiedNameEN": { "type": "string" },
+        "QualifiedNameGA": { "type": "string" },
+        "Coordinates": { "$ref": "#/$defs/Coordinates" }
+      }
+    },
+    "Country": {
+      "type": "object",
+      "properties": {
+        "IsoCode": { "type": "string" },
+        "GeoNameID": { "type": "integer" },
+        "NameEN": { "type": "string" },
+        "NameGA": { "type": "string" },
+        "Coordinates": { "$ref": "#/$defs/Coordinates" }
+      }
+    },
+    "LocationIreland": {
+      "type": "object",
+      "properties": {
+        "LogainmID": { "type": "integer" },
+        "NameEN": { "type": "string" },
+        "NameGA": { "type": "string" },
+        "Coordinates": { "$ref": "#/$defs/Coordinates" }
+      }
+    },
+    "Date": {
+      "type": "object",
+      "properties": {
+        "IsoDate": { "type": "string" },
+        "Accuracy": { "type": "string", "enum": ["APPROX", "INFER", "QUESTION"] },
+        "Year": { "type": "integer" },
+        "Month": { "type": "integer" },
+        "Day": { "type": "integer" }
+      }
+    },
+    "Name": {
+      "type": "object",
+      "properties": {
+        "FirstNames": { "type": "string" },
+        "Surname": { "type": "string" },
+        "FullName": { "type": "string" }
+      }
+    },
+    "Person": {
+      "type": "object",
+      "properties": {
+        "ID": { "type": "integer" },
+        "Names": { "type": "array", "items": { "$ref": "#/$defs/Name" } },
+        "Gender": { "type": "string", "enum": ["f", "m"] }
+      }
+    },
+    "HandbookTopic": {
+      "type": "object",
+      "properties": {
+        "ID": { "type": "string" },
+        "TopicEN": { "type": "string" },
+        "TopicGA": { "type": "string" },
+        "SubTopicEN": { "type": "string" },
+        "SubTopicGA": { "type": "string" }
+      }
+    },
+    "Format": {
+      "type": "object",
+      "properties": {
+        "Quantity": { "type": "integer" },
+        "Color": { "type": "string" },
+        "Dimensions": { "type": "string" },
+        "Medium": { "type": "string" },
+        "Physical": { "type": "string" }
+      }
+    }
+  }
+}

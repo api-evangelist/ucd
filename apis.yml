@@ -85,6 +85,16 @@ apis:
         url: https://github.com/gaois/DuchasAPI-docs
       - type: Authentication
         url: https://docs.gaois.ie
+      - type: OpenAPI
+        url: openapi/ucd-duchas.yaml
+      - type: JSONSchema
+        url: json-schema/ucd-photograph-schema.json
+      - type: Vocabulary
+        url: vocabulary/ucd-vocabulary.yml
+      - type: Rules
+        url: rules/ucd-rules.yml
+      - type: JSONLD
+        url: json-ld/ucd-context.jsonld
 common:
   - type: Website
     url: https://www.ucd.ie/

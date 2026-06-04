@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.duchas.ie/api/v0.5/cbeg/12345",
+    "headers": {
+      "X-Api-Key": "YOUR_API_KEY",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "ID": 12345,
+    "DateCreated": "2018-03-14T09:21:00Z",
+    "DateModified": "2020-07-02T13:05:00Z",
+    "ReferenceNumber": "NPA P14.2",
+    "Digitized": true,
+    "Copyright": "CBE",
+    "Condition": 1,
+    "ConditionDescription": "Minor surface scratches.",
+    "Date": {
+      "IsoDate": "1935",
+      "Year": 1935,
+      "Accuracy": "APPROX"
+    },
+    "Photographer": {
+      "ID": 887,
+      "Names": [
+        { "FirstNames": "Caoimhín", "Surname": "Ó Danachair", "FullName": "Caoimhín Ó Danachair" }
+      ],
+      "Gender": "m"
+    },
+    "Counties": [
+      {
+        "LogainmID": 100009,
+        "NameEN": "Limerick",
+        "NameGA": "Luimneach",
+        "Coordinates": { "Latitude": 52.5, "Longitude": -8.9 }
+      }
+    ],
+    "ArchivedDescription": "Thatched cottage near Athea, Co. Limerick.",
+    "Formats": [
+      { "Quantity": 1, "Color": "Black and white", "Dimensions": "6x9 cm", "Medium": "Glass plate negative", "Physical": "Negative" }
+    ]
+  }
+}

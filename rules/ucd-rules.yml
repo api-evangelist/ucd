@@ -1,0 +1,51 @@
+---
+# Spectral ruleset encoding patterns observed in the Duchas API (UCD).
+# Run with: spectral lint openapi/ucd-duchas.yaml --ruleset rules/ucd-rules.yml
+extends: [[spectral:oas, off]]
+formats:
+  - oas3
+rules:
+  ucd-info-contact:
+    description: API info should provide a contact.
+    given: $.info
+    severity: warn
+    then:
+      field: contact
+      function: truthy
+  ucd-https-server:
+    description: Duchas servers must use HTTPS (HTTP redirects to HTTPS).
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  ucd-operation-id:
+    description: Every operation must declare an operationId.
+    given: $.paths[*][get,post,put,delete,patch]
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+  ucd-get-only:
+    description: The Duchas API is read-only; only GET operations are expected.
+    given: $.paths[*]
+    severity: warn
+    then:
+      field: post
+      function: falsy
+  ucd-security-required:
+    description: Collection operations should require an API key.
+    given: $
+    severity: warn
+    then:
+      field: security
+      function: truthy
+  ucd-pascalcase-schema-props:
+    description: Duchas response fields use PascalCase (e.g. ID, NameEN, DateCreated).
+    given: $.components.schemas[*].properties.*~
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*$"

@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.duchas.ie/api/v0.5/cbed/887",
+    "headers": {
+      "X-Api-Key": "YOUR_API_KEY",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "ID": 887,
+    "DateCreated": "2017-11-01T10:00:00Z",
+    "DateModified": "2021-01-19T08:42:00Z",
+    "Names": [
+      { "FirstNames": "Caoimhín", "Surname": "Ó Danachair", "FullName": "Caoimhín Ó Danachair" }
+    ],
+    "Gender": "m",
+    "ViafID": 12345678,
+    "BirthDate": { "IsoDate": "1913", "Year": 1913, "Accuracy": "APPROX" },
+    "DeathDate": { "IsoDate": "2002", "Year": 2002 },
+    "BirthCounty": {
+      "LogainmID": 100009,
+      "NameEN": "Limerick",
+      "NameGA": "Luimneach"
+    },
+    "Occupations": [
+      { "ID": "BAIL", "NameEN": "Folklore collector", "NameGA": "Bailitheoir béaloidis" }
+    ]
+  }
+}

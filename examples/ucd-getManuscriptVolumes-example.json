@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.duchas.ie/api/v0.5/cbe?VolumeNumber=0001",
+    "headers": {
+      "X-Api-Key": "YOUR_API_KEY",
+      "Accept": "application/json"
+    }
+  },
+  "response": [
+    {
+      "ID": 4501,
+      "DateCreated": "2016-05-10T12:00:00Z",
+      "DateModified": "2019-09-30T16:20:00Z",
+      "VolumeNumber": "0001",
+      "Status": 4,
+      "Parts": [
+        {
+          "ID": 90011,
+          "ListingOrder": 1,
+          "TitlePages": 2,
+          "ExtraInfoStatus": "PUB",
+          "Items": [
+            {
+              "ID": 700123,
+              "ListingOrder": "1",
+              "Title": "Seanchas faoi thithe gloine",
+              "Extract": "Bhí fear ann fadó...",
+              "FirstPageID": 880001,
+              "LastPageID": 880004,
+              "ContentType": "SEAN",
+              "ExtraInfoStatus": "PUB"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

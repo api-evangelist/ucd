@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucd/main/json-structure/ucd-volume-structure.json",
+  "name": "DuchasVolume",
+  "description": "Manuscript volume from the Main Manuscript (CBE) or Schools' (CBES) Collection, National Folklore Collection, UCD.",
+  "type": "object",
+  "properties": {
+    "ID": { "type": "int32" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "DateModified": { "type": "string", "format": "date-time" },
+    "VolumeNumber": { "type": "string" },
+    "Type": { "type": "string", "enum": ["bound-volume", "copybook-package", "volume"] },
+    "Status": { "type": "int32" }
+  },
+  "required": ["ID"]
+}

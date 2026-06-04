@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucd/main/json-structure/ucd-person-structure.json",
+  "name": "DuchasPerson",
+  "description": "Normalized person record from the Persons Database (CBED), National Folklore Collection, UCD.",
+  "type": "object",
+  "properties": {
+    "ID": { "type": "int32" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "DateModified": { "type": "string", "format": "date-time" },
+    "Gender": { "type": "string", "enum": ["f", "m"] },
+    "AinmID": { "type": "int32" },
+    "ViafID": { "type": "int32" },
+    "Names": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "FirstNames": { "type": "string" },
+          "Surname": { "type": "string" },
+          "FullName": { "type": "string" }
+        }
+      }
+    },
+    "Occupations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ID": { "type": "string" },
+          "NameEN": { "type": "string" },
+          "NameGA": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["ID"]
+}

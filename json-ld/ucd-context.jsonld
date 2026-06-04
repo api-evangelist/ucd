@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "ucd": "https://digital.ucd.ie/ns#",
+    "duchas": "https://www.duchas.ie/api/v0.5/ns#",
+    "@vocab": "https://www.duchas.ie/api/v0.5/ns#",
+
+    "institution": { "@id": "schema:CollegeOrUniversity" },
+    "name": "schema:name",
+    "url": { "@id": "schema:url", "@type": "@id" },
+
+    "Photograph": "schema:Photograph",
+    "Person": "schema:Person",
+    "Volume": "schema:Book",
+    "Item": "schema:CreativeWork",
+
+    "ID": "schema:identifier",
+    "DateCreated": { "@id": "schema:dateCreated", "@type": "schema:DateTime" },
+    "DateModified": { "@id": "schema:dateModified", "@type": "schema:DateTime" },
+    "Title": "schema:name",
+    "Extract": "schema:text",
+    "ReferenceNumber": "schema:identifier",
+    "Copyright": "schema:copyrightNotice",
+    "FullName": "schema:name",
+    "FirstNames": "schema:givenName",
+    "Surname": "schema:familyName",
+    "Gender": "schema:gender",
+    "BirthDate": { "@id": "schema:birthDate", "@type": "schema:Date" },
+    "DeathDate": { "@id": "schema:deathDate", "@type": "schema:Date" },
+    "Occupations": "schema:hasOccupation",
+    "Counties": "schema:spatialCoverage",
+    "Countries": "schema:spatialCoverage",
+    "Coordinates": "schema:geo",
+    "Latitude": "schema:latitude",
+    "Longitude": "schema:longitude",
+    "Photographer": "schema:author",
+    "Collectors": "schema:contributor",
+    "Informants": "schema:contributor"
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "University College Dublin",
+  "url": "https://www.ucd.ie/",
+  "ucd:catalogedAPI": "https://www.duchas.ie/api/v0.5"
+}

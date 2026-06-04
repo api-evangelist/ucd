@@ -1,0 +1,73 @@
+---
+vocabulary:
+  name: Duchas API Vocabulary (UCD)
+  description: >-
+    Controlled terms used by the Dúchas API serving the National Folklore
+    Collection (Cnuasach Bhéaloideas Éireann) held at University College
+    Dublin. Definitions are derived from the public Dúchas API documentation
+    and data dictionary.
+  version: 0.5.0
+  terms:
+    - term: CBÉ
+      definition: >-
+        Cnuasach Bhéaloideas Éireann — the Main Manuscript Collection of bound
+        volumes containing stories, accounts, questionnaires and diaries.
+      tags: [collection, manuscript]
+    - term: CBÉS
+      definition: >-
+        The Schools' Collection, material gathered through the Scéim na Scol
+        scheme by primary-school pupils in 1937-1939.
+      tags: [collection, schools]
+    - term: CBÉG
+      definition: The Photographic Collection of the National Folklore Collection.
+      tags: [collection, photographs]
+    - term: CBÉD
+      definition: The Persons Database holding normalized person records.
+      tags: [collection, persons]
+    - term: Volume
+      definition: A bound volume, copybook package or volume of manuscript material.
+      tags: [object, manuscript]
+    - term: Part
+      definition: A subdivision of a volume grouping related items.
+      tags: [object, manuscript]
+    - term: Item
+      definition: An individual unit of folklore content within a part.
+      tags: [object, manuscript]
+    - term: Page
+      definition: A single page within a volume, optionally with transcripts.
+      tags: [object, manuscript]
+    - term: Photograph
+      definition: A photographic record with archival and digitization metadata.
+      tags: [object, photographs]
+    - term: Person
+      definition: A normalized record for a collector, informant or relevant person.
+      tags: [object, persons]
+    - term: Status
+      definition: >-
+        Editorial status 0-4; 0 is newly ingested and 4 is publication-ready.
+        A privileged field.
+      tags: [field, editorial, privileged]
+    - term: DateAccuracy
+      definition: >-
+        Qualifier on a date value — APPROX (approximate), INFER (inferred) or
+        QUESTION (questionable).
+      tags: [field, date]
+    - term: Copyright
+      definition: >-
+        Copyright code for a photograph — CBE, OTH (other), NOT (not in
+        copyright) or UNK (unknown).
+      tags: [field, photographs, rights]
+    - term: ContentType
+      definition: >-
+        Type of manuscript item — SEAN (seanchas), CÍN-LAE (diary), CEIST
+        (questionnaire) or COMH (other).
+      tags: [field, manuscript]
+    - term: LogainmID
+      definition: Identifier from the Logainm.ie placenames database for Irish locations.
+      tags: [field, identifier, geospatial]
+    - term: ViafID
+      definition: Virtual International Authority File identifier for a person.
+      tags: [field, identifier, person]
+    - term: ExtraInfoStatus
+      definition: Publication state of supplementary information — EDIT or PUB.
+      tags: [field, editorial]

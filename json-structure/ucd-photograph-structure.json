@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucd/main/json-structure/ucd-photograph-structure.json",
+  "name": "DuchasPhotograph",
+  "description": "Photograph record from the Photographic Collection (CBEG), National Folklore Collection, UCD.",
+  "type": "object",
+  "properties": {
+    "ID": { "type": "int32" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "DateModified": { "type": "string", "format": "date-time" },
+    "ReferenceNumber": { "type": "string" },
+    "Digitized": { "type": "boolean" },
+    "Copyright": { "type": "string", "enum": ["CBE", "OTH", "NOT", "UNK"] },
+    "Condition": { "type": "int32" },
+    "ConditionDescription": { "type": "string" },
+    "ArchivedDescription": { "type": "string" },
+    "ExtraInfoEN": { "type": "string" },
+    "ExtraInfoGA": { "type": "string" },
+    "Counties": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["ID"]
+}
