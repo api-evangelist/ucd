@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ucd-duchas.yaml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: ApiKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  sources:
+  - openapi/ucd-duchas.yaml
+- name: ApiKeyQuery
+  type: apiKey
+  in: query
+  parameter: apiKey
+  sources:
+  - openapi/ucd-duchas.yaml
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: Username is the API key; password is empty.
+  sources:
+  - openapi/ucd-duchas.yaml

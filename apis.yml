@@ -96,6 +96,10 @@ apis:
       - type: JSONLD
         url: json-ld/ucd-context.jsonld
 common:
+  - type: DomainSecurity
+    url: security/ucd-domain-security.yml
+  - type: Authentication
+    url: authentication/ucd-authentication.yml
   - type: Website
     url: https://www.ucd.ie/
   - type: GitHub

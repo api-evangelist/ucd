@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.ucd.ie
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 10 23:59:59 2026 GMT
+  hsts: null
+- host: digital.ucd.ie
+  https: true
+  tls_cert_error: '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get
+    local issuer certificate (_ssl.c:1082)'
+  hsts: null
+- host: libguides.ucd.ie
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  1 12:36:48 2026 GMT
+  hsts: null
+domains:
+- domain: ucd.ie
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
