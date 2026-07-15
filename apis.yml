@@ -96,6 +96,8 @@ apis:
       - type: JSONLD
         url: json-ld/ucd-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/ucd-agentic-access.yml
   - type: DomainSecurity
     url: security/ucd-domain-security.yml
   - type: Authentication
