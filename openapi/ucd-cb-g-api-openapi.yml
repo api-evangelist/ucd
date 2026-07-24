@@ -1,0 +1,613 @@
+openapi: 3.0.3
+info:
+  title: Dúchas API (National Folklore Collection, UCD) CBÉ CBÉG API
+  description: 'The Dúchas API exposes published content from the National Folklore Collection (Cnuasach Bhéaloideas Éireann) held at University College Dublin. It returns JSON across four databases: the Main Manuscript Collection (CBÉ), the Schools'' Collection (CBÉS), the Photographic Collection (CBÉG) and the Persons Database (CBÉD). This description is derived faithfully from the public Dúchas API developer documentation and data dictionary maintained by the Gaois research group.'
+  version: 0.5.0
+  contact:
+    name: Gaois / Dúchas
+    email: eolas@duchas.ie
+    url: https://docs.gaois.ie
+  license:
+    name: See Dúchas terms of use
+    url: https://www.duchas.ie/en/info/copyright
+servers:
+- url: https://www.duchas.ie/api/v0.5
+  description: Dúchas API v0.5 (prerelease)
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+- BasicAuth: []
+tags:
+- name: CBÉG
+paths:
+  /cbeg:
+    get:
+      operationId: getPhotographs
+      summary: Query the Photographic Collection (CBÉG)
+      description: At least one filter parameter is required.
+      tags:
+      - CBÉG
+      parameters:
+      - $ref: '#/components/parameters/Status'
+      - $ref: '#/components/parameters/Digitized'
+      - $ref: '#/components/parameters/Copyright'
+      - $ref: '#/components/parameters/Condition'
+      - $ref: '#/components/parameters/HandbookTopic'
+      - $ref: '#/components/parameters/PhotographerID'
+      - $ref: '#/components/parameters/PersonID'
+      - $ref: '#/components/parameters/RelevantPersonID'
+      - $ref: '#/components/parameters/CountyID'
+      - $ref: '#/components/parameters/PlaceID'
+      - $ref: '#/components/parameters/Country'
+      - $ref: '#/components/parameters/GeoNameID'
+      - $ref: '#/components/parameters/DateFrom'
+      - $ref: '#/components/parameters/DateTo'
+      - $ref: '#/components/parameters/DateAccuracy'
+      - $ref: '#/components/parameters/CreatedBefore'
+      - $ref: '#/components/parameters/CreatedSince'
+      - $ref: '#/components/parameters/ModifiedBefore'
+      - $ref: '#/components/parameters/ModifiedSince'
+      responses:
+        '200':
+          description: A list of photographs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Photograph'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cbeg/{id}:
+    get:
+      operationId: getPhotographById
+      summary: Get an individual photograph
+      tags:
+      - CBÉG
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A single photograph.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photograph'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /cbeg/topics/handbook:
+    get:
+      operationId: getHandbookTopics
+      summary: Photographic Collection subject heading reference list
+      tags:
+      - CBÉG
+      responses:
+        '200':
+          description: Handbook topics.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HandbookTopic'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Country:
+      type: object
+      properties:
+        IsoCode:
+          type: string
+          description: ISO 3166-1/2 code.
+        GeoNameID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+    HandbookTopic:
+      type: object
+      properties:
+        ID:
+          type: string
+        TopicEN:
+          type: string
+        TopicGA:
+          type: string
+        SubTopicEN:
+          type: string
+        SubTopicGA:
+          type: string
+    ArchivedInfo:
+      type: object
+      properties:
+        Copyright:
+          type: string
+        Condition:
+          type: string
+        Topic:
+          type: string
+        Date:
+          type: string
+        Photographer:
+          type: string
+        Location:
+          type: string
+        Format:
+          type: string
+    Digitization:
+      type: object
+      properties:
+        DateCaptured:
+          type: string
+        Operator:
+          type: string
+          description: Privileged.
+        CaptureDevice:
+          type: string
+        CaptureSoftware:
+          type: string
+        SourceCondition:
+          type: string
+        CopyNote:
+          type: string
+        MimeType:
+          type: string
+        ImageBitDepth:
+          type: string
+        ImageEditor:
+          type: string
+        ImageResolution:
+          type: string
+        ImageSize:
+          type: string
+        FileSize:
+          type: string
+        ComputerOS:
+          type: string
+        Storage:
+          type: string
+    Coordinates:
+      type: object
+      properties:
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+    LocationIreland:
+      type: object
+      properties:
+        LogainmID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        Counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/County'
+    Age:
+      type: object
+      properties:
+        Age:
+          type: integer
+        Qualifier:
+          type: string
+          enum:
+          - APPROX
+          - OVER
+        RangeMax:
+          type: integer
+    Name:
+      type: object
+      properties:
+        FirstNames:
+          type: string
+        Surname:
+          type: string
+        FullName:
+          type: string
+    Format:
+      type: object
+      properties:
+        Quantity:
+          type: integer
+        Color:
+          type: string
+        ColorComment:
+          type: string
+        Dimensions:
+          type: string
+        DimensionsComment:
+          type: string
+        Medium:
+          type: string
+        MediumComment:
+          type: string
+        Physical:
+          type: string
+        PhysicalComment:
+          type: string
+    County:
+      type: object
+      properties:
+        LogainmID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        QualifiedNameEN:
+          type: string
+        QualifiedNameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+    LocationAbroad:
+      type: object
+      properties:
+        GeoNameID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        Country:
+          $ref: '#/components/schemas/Country'
+    Occupation:
+      type: object
+      properties:
+        ID:
+          type: string
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+    Date:
+      type: object
+      properties:
+        IsoDate:
+          type: string
+          format: date
+        IsoStartDate:
+          type: string
+          format: date
+        IsoEndDate:
+          type: string
+          format: date
+        IsoDuration:
+          type: string
+        Accuracy:
+          type: string
+          enum:
+          - APPROX
+          - INFER
+          - QUESTION
+        Year:
+          type: integer
+        Month:
+          type: integer
+        Day:
+          type: integer
+        PeriodStartYear:
+          type: integer
+        PeriodStartMonth:
+          type: integer
+        PeriodStartDay:
+          type: integer
+        PeriodEndYear:
+          type: integer
+        PeriodEndMonth:
+          type: integer
+        PeriodEndDay:
+          type: integer
+    Photograph:
+      type: object
+      properties:
+        ID:
+          type: integer
+        DateCreated:
+          type: string
+          format: date-time
+        DateModified:
+          type: string
+          format: date-time
+        EditorsPick:
+          type: string
+          format: date-time
+        ReferenceNumber:
+          type: string
+        Status:
+          type: integer
+          description: Privileged.
+        Sensitive:
+          type: boolean
+          description: Privileged.
+        Digitized:
+          type: boolean
+        Copyright:
+          type: string
+          enum:
+          - CBE
+          - OTH
+          - NOT
+          - UNK
+        Condition:
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+        ConditionDescription:
+          type: string
+        HandbookTopic:
+          $ref: '#/components/schemas/HandbookTopic'
+        Date:
+          $ref: '#/components/schemas/Date'
+        Photographer:
+          $ref: '#/components/schemas/Person'
+        RelevantPersons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        Counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/County'
+        LocationsIreland:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationIreland'
+        Countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+        LocationsAbroad:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationAbroad'
+        ArchivedDescriptionStatus:
+          type: string
+          enum:
+          - EDIT
+          - PUB
+        ArchivedDescription:
+          type: string
+        ExtraInfoStatus:
+          type: string
+          enum:
+          - EDIT
+          - PUB
+        ExtraInfoEN:
+          type: string
+        ExtraInfoGA:
+          type: string
+        Formats:
+          type: array
+          items:
+            $ref: '#/components/schemas/Format'
+        ArchivedInfo:
+          $ref: '#/components/schemas/ArchivedInfo'
+        Digitization:
+          $ref: '#/components/schemas/Digitization'
+    Person:
+      type: object
+      properties:
+        ID:
+          type: integer
+        DateCreated:
+          type: string
+          format: date-time
+        DateModified:
+          type: string
+          format: date-time
+        Names:
+          type: array
+          items:
+            $ref: '#/components/schemas/Name'
+        Gender:
+          type: string
+          enum:
+          - f
+          - m
+        Age:
+          $ref: '#/components/schemas/Age'
+        AinmID:
+          type: integer
+        ViafID:
+          type: integer
+        BirthDate:
+          $ref: '#/components/schemas/Date'
+        DeathDate:
+          $ref: '#/components/schemas/Date'
+        BirthCounty:
+          $ref: '#/components/schemas/County'
+        BirthPlaceIreland:
+          $ref: '#/components/schemas/LocationIreland'
+        BirthCountry:
+          $ref: '#/components/schemas/Country'
+        BirthPlaceAbroad:
+          $ref: '#/components/schemas/LocationAbroad'
+        Counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/County'
+        AddressesIreland:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationIreland'
+        Countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+        AddressesAbroad:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationAbroad'
+        Occupations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Occupation'
+        CollectorRelationship:
+          type: string
+          enum:
+          - GRPAR
+          - PAR
+          - REL
+          - UNK
+          - UNREL
+  parameters:
+    DateAccuracy:
+      name: DateAccuracy
+      in: query
+      schema:
+        type: string
+        enum:
+        - APPROX
+        - INFER
+        - QUESTION
+    Country:
+      name: Country
+      in: query
+      description: ISO 3166-1 alpha-2 code; UK subdivisions use GB-ENG, GB-NIR, GB-SCT, GB-WLS.
+      schema:
+        type: string
+    ModifiedBefore:
+      name: ModifiedBefore
+      in: query
+      schema:
+        type: string
+        format: date-time
+    PhotographerID:
+      name: PhotographerID
+      in: query
+      schema:
+        type: integer
+    PersonID:
+      name: PersonID
+      in: query
+      schema:
+        type: integer
+    Condition:
+      name: Condition
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 3
+    Status:
+      name: Status
+      in: query
+      description: Editorial status 0-4 (privileged). Only 4 is publication-ready.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 4
+    GeoNameID:
+      name: GeoNameID
+      in: query
+      schema:
+        type: integer
+    CreatedSince:
+      name: CreatedSince
+      in: query
+      schema:
+        type: string
+        format: date-time
+    Copyright:
+      name: Copyright
+      in: query
+      schema:
+        type: string
+        enum:
+        - CBE
+        - OTH
+        - NOT
+        - UNK
+    HandbookTopic:
+      name: HandbookTopic
+      in: query
+      schema:
+        type: string
+    DateFrom:
+      name: DateFrom
+      in: query
+      description: Year in YYYY format.
+      schema:
+        type: string
+    RelevantPersonID:
+      name: RelevantPersonID
+      in: query
+      schema:
+        type: integer
+    CountyID:
+      name: CountyID
+      in: query
+      schema:
+        type: integer
+    CreatedBefore:
+      name: CreatedBefore
+      in: query
+      schema:
+        type: string
+        format: date-time
+    DateTo:
+      name: DateTo
+      in: query
+      description: Year in YYYY format.
+      schema:
+        type: string
+    PlaceID:
+      name: PlaceID
+      in: query
+      schema:
+        type: integer
+    Digitized:
+      name: Digitized
+      in: query
+      schema:
+        type: boolean
+    ModifiedSince:
+      name: ModifiedSince
+      in: query
+      schema:
+        type: string
+        format: date-time
+  responses:
+    BadRequest:
+      description: Bad Request — invalid syntax.
+    NotFound:
+      description: Not Found — resource does not exist.
+    Unauthorized:
+      description: Unauthorized — missing or invalid API key.
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Username is the API key; password is empty.

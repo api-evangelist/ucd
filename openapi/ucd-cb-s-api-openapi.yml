@@ -1,0 +1,690 @@
+openapi: 3.0.3
+info:
+  title: Dúchas API (National Folklore Collection, UCD) CBÉ CBÉS API
+  description: 'The Dúchas API exposes published content from the National Folklore Collection (Cnuasach Bhéaloideas Éireann) held at University College Dublin. It returns JSON across four databases: the Main Manuscript Collection (CBÉ), the Schools'' Collection (CBÉS), the Photographic Collection (CBÉG) and the Persons Database (CBÉD). This description is derived faithfully from the public Dúchas API developer documentation and data dictionary maintained by the Gaois research group.'
+  version: 0.5.0
+  contact:
+    name: Gaois / Dúchas
+    email: eolas@duchas.ie
+    url: https://docs.gaois.ie
+  license:
+    name: See Dúchas terms of use
+    url: https://www.duchas.ie/en/info/copyright
+servers:
+- url: https://www.duchas.ie/api/v0.5
+  description: Dúchas API v0.5 (prerelease)
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+- BasicAuth: []
+tags:
+- name: CBÉS
+paths:
+  /cbes:
+    get:
+      operationId: getSchoolsVolumes
+      summary: Query the Schools' Collection (CBÉS)
+      description: At least one filter parameter is required.
+      tags:
+      - CBÉS
+      parameters:
+      - $ref: '#/components/parameters/VolumeID'
+      - $ref: '#/components/parameters/VolumeNumber'
+      - $ref: '#/components/parameters/PageID'
+      - $ref: '#/components/parameters/PartID'
+      - $ref: '#/components/parameters/ItemID'
+      - $ref: '#/components/parameters/SchoolCountyID'
+      - $ref: '#/components/parameters/SchoolPlaceID'
+      - $ref: '#/components/parameters/TeacherID'
+      - $ref: '#/components/parameters/CollectorID'
+      - $ref: '#/components/parameters/InformantID'
+      - $ref: '#/components/parameters/PersonID'
+      - $ref: '#/components/parameters/CountyID'
+      - $ref: '#/components/parameters/PlaceID'
+      - $ref: '#/components/parameters/TopicID'
+      - $ref: '#/components/parameters/Language'
+      - $ref: '#/components/parameters/CreatedBefore'
+      - $ref: '#/components/parameters/CreatedSince'
+      - $ref: '#/components/parameters/ModifiedBefore'
+      - $ref: '#/components/parameters/ModifiedSince'
+      responses:
+        '200':
+          description: A list of Schools' Collection volumes/parts/items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volume'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cbes/volumes:
+    get:
+      operationId: getSchoolsVolumeIndex
+      summary: Schools' Collection volume index
+      tags:
+      - CBÉS
+      responses:
+        '200':
+          description: School volume index.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volume'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cbes/topics:
+    get:
+      operationId: getSchoolsTopics
+      summary: Schools' Collection subject list
+      tags:
+      - CBÉS
+      responses:
+        '200':
+          description: Schools' Collection topics.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    Language:
+      name: Language
+      in: query
+      description: ISO 639-1 language code.
+      schema:
+        type: string
+    VolumeID:
+      name: VolumeID
+      in: query
+      schema:
+        type: integer
+    PageID:
+      name: PageID
+      in: query
+      schema:
+        type: integer
+    TeacherID:
+      name: TeacherID
+      in: query
+      schema:
+        type: integer
+    ModifiedBefore:
+      name: ModifiedBefore
+      in: query
+      schema:
+        type: string
+        format: date-time
+    ItemID:
+      name: ItemID
+      in: query
+      schema:
+        type: integer
+    CollectorID:
+      name: CollectorID
+      in: query
+      schema:
+        type: integer
+    SchoolPlaceID:
+      name: SchoolPlaceID
+      in: query
+      schema:
+        type: integer
+    PersonID:
+      name: PersonID
+      in: query
+      schema:
+        type: integer
+    CreatedSince:
+      name: CreatedSince
+      in: query
+      schema:
+        type: string
+        format: date-time
+    PartID:
+      name: PartID
+      in: query
+      schema:
+        type: integer
+    SchoolCountyID:
+      name: SchoolCountyID
+      in: query
+      schema:
+        type: integer
+    CountyID:
+      name: CountyID
+      in: query
+      schema:
+        type: integer
+    CreatedBefore:
+      name: CreatedBefore
+      in: query
+      schema:
+        type: string
+        format: date-time
+    VolumeNumber:
+      name: VolumeNumber
+      in: query
+      schema:
+        type: string
+    InformantID:
+      name: InformantID
+      in: query
+      schema:
+        type: integer
+    PlaceID:
+      name: PlaceID
+      in: query
+      schema:
+        type: integer
+    TopicID:
+      name: TopicID
+      in: query
+      schema:
+        type: integer
+    ModifiedSince:
+      name: ModifiedSince
+      in: query
+      schema:
+        type: string
+        format: date-time
+  schemas:
+    Country:
+      type: object
+      properties:
+        IsoCode:
+          type: string
+          description: ISO 3166-1/2 code.
+        GeoNameID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+    School:
+      type: object
+      properties:
+        Name:
+          type: string
+        RollNumber:
+          type: string
+        Locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationIreland'
+    Transcriber:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Name:
+          type: string
+    Item:
+      type: object
+      properties:
+        ID:
+          type: integer
+        ListingOrder:
+          type: string
+        EditorsPick:
+          type: string
+          format: date-time
+        Sensitive:
+          type: boolean
+          description: Privileged.
+        Title:
+          type: string
+        Extract:
+          type: string
+        Pages:
+          type: array
+          items:
+            type: integer
+        FirstPageID:
+          type: integer
+        LastPageID:
+          type: integer
+        ContentType:
+          type: string
+          enum:
+          - SEAN
+          - CÍN-LAE
+          - CEIST
+          - COMH
+        ContentModes:
+          type: array
+          items:
+            type: string
+            enum:
+            - LÁMH
+            - CLÓ
+            - LÍN
+        ContentScripts:
+          type: array
+          items:
+            type: string
+        Languages:
+          type: array
+          items:
+            type: string
+        Date:
+          $ref: '#/components/schemas/Date'
+        Counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/County'
+        LocationsIreland:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationIreland'
+        Countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+        LocationsAbroad:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationAbroad'
+        Collectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        Informants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        RelevantPersons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        LinkedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManuscriptItemLink'
+        Topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Topic'
+        ExtraInfoStatus:
+          type: string
+          enum:
+          - EDIT
+          - PUB
+        ExtraInfoEN:
+          type: string
+        ExtraInfoGA:
+          type: string
+    Transcript:
+      type: object
+      properties:
+        ID:
+          type: integer
+        DateCreated:
+          type: string
+          format: date-time
+        DateModified:
+          type: string
+          format: date-time
+        ItemID:
+          type: integer
+        Approved:
+          type: boolean
+          description: Privileged.
+        Moderated:
+          type: boolean
+          description: Privileged.
+        Text:
+          type: string
+        Transcribers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transcriber'
+    Coordinates:
+      type: object
+      properties:
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+    Topic:
+      type: object
+      properties:
+        ID:
+          type: integer
+        TitleEN:
+          type: string
+        TitleGA:
+          type: string
+        SubTopics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Topic'
+    LocationIreland:
+      type: object
+      properties:
+        LogainmID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        Counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/County'
+    ManuscriptItemLink:
+      type: object
+      properties:
+        PartID:
+          type: integer
+        PageID:
+          type: integer
+        ItemID:
+          type: integer
+        Sequence:
+          type: string
+          enum:
+          - PREV
+          - NEXT
+    Age:
+      type: object
+      properties:
+        Age:
+          type: integer
+        Qualifier:
+          type: string
+          enum:
+          - APPROX
+          - OVER
+        RangeMax:
+          type: integer
+    Name:
+      type: object
+      properties:
+        FirstNames:
+          type: string
+        Surname:
+          type: string
+        FullName:
+          type: string
+    County:
+      type: object
+      properties:
+        LogainmID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        QualifiedNameEN:
+          type: string
+        QualifiedNameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+    LocationAbroad:
+      type: object
+      properties:
+        GeoNameID:
+          type: integer
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        Country:
+          $ref: '#/components/schemas/Country'
+    Part:
+      type: object
+      properties:
+        ID:
+          type: integer
+        ListingOrder:
+          type: integer
+        TitlePages:
+          type: integer
+        Date:
+          $ref: '#/components/schemas/Date'
+        Counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/County'
+        LocationsIreland:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationIreland'
+        Countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+        LocationsAbroad:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationAbroad'
+        Collectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        Informants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        RelevantPersons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        School:
+          $ref: '#/components/schemas/School'
+        Teachers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        ExtraInfoStatus:
+          type: string
+          enum:
+          - EDIT
+          - PUB
+        ExtraInfoEN:
+          type: string
+        ExtraInfoGA:
+          type: string
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+    Occupation:
+      type: object
+      properties:
+        ID:
+          type: string
+        NameEN:
+          type: string
+        NameGA:
+          type: string
+    Date:
+      type: object
+      properties:
+        IsoDate:
+          type: string
+          format: date
+        IsoStartDate:
+          type: string
+          format: date
+        IsoEndDate:
+          type: string
+          format: date
+        IsoDuration:
+          type: string
+        Accuracy:
+          type: string
+          enum:
+          - APPROX
+          - INFER
+          - QUESTION
+        Year:
+          type: integer
+        Month:
+          type: integer
+        Day:
+          type: integer
+        PeriodStartYear:
+          type: integer
+        PeriodStartMonth:
+          type: integer
+        PeriodStartDay:
+          type: integer
+        PeriodEndYear:
+          type: integer
+        PeriodEndMonth:
+          type: integer
+        PeriodEndDay:
+          type: integer
+    Page:
+      type: object
+      properties:
+        ID:
+          type: integer
+        PageNumber:
+          type: string
+        ListingOrder:
+          type: string
+        TitlePage:
+          type: boolean
+        ImageFileName:
+          type: string
+        Sensitive:
+          type: boolean
+          description: Privileged.
+        Transcripts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transcript'
+    Volume:
+      type: object
+      properties:
+        ID:
+          type: integer
+        DateCreated:
+          type: string
+          format: date-time
+        DateModified:
+          type: string
+          format: date-time
+        VolumeNumber:
+          type: string
+        Type:
+          type: string
+          enum:
+          - bound-volume
+          - copybook-package
+          - volume
+        Status:
+          type: integer
+          description: Privileged.
+        Pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page'
+        Parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Part'
+    Person:
+      type: object
+      properties:
+        ID:
+          type: integer
+        DateCreated:
+          type: string
+          format: date-time
+        DateModified:
+          type: string
+          format: date-time
+        Names:
+          type: array
+          items:
+            $ref: '#/components/schemas/Name'
+        Gender:
+          type: string
+          enum:
+          - f
+          - m
+        Age:
+          $ref: '#/components/schemas/Age'
+        AinmID:
+          type: integer
+        ViafID:
+          type: integer
+        BirthDate:
+          $ref: '#/components/schemas/Date'
+        DeathDate:
+          $ref: '#/components/schemas/Date'
+        BirthCounty:
+          $ref: '#/components/schemas/County'
+        BirthPlaceIreland:
+          $ref: '#/components/schemas/LocationIreland'
+        BirthCountry:
+          $ref: '#/components/schemas/Country'
+        BirthPlaceAbroad:
+          $ref: '#/components/schemas/LocationAbroad'
+        Counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/County'
+        AddressesIreland:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationIreland'
+        Countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+        AddressesAbroad:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationAbroad'
+        Occupations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Occupation'
+        CollectorRelationship:
+          type: string
+          enum:
+          - GRPAR
+          - PAR
+          - REL
+          - UNK
+          - UNREL
+  responses:
+    BadRequest:
+      description: Bad Request — invalid syntax.
+    Unauthorized:
+      description: Unauthorized — missing or invalid API key.
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Username is the API key; password is empty.
