@@ -1,0 +1,630 @@
+{
+  "item": [
+    {
+      "id": "1aa0a0db-4d4c-4904-86e2-e4be1d38c60f",
+      "name": "CBÉD",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5119745-0ad9-4f1e-8eb6-2a81fbdf0a48",
+          "name": "Query the Persons Database (CBÉD)",
+          "request": {
+            "name": "Query the Persons Database (CBÉD)",
+            "description": {},
+            "url": {
+              "path": [
+                "cbed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Gender",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "AinmID",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ViafID",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CountyID",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PlaceID",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 code; UK subdivisions use GB-ENG, GB-NIR, GB-SCT, GB-WLS."
+                },
+                {
+                  "disabled": false,
+                  "key": "GeoNameID",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Occupation",
+                  "value": "<string>",
+                  "description": "Occupation code, e.g. IASC, FEIRM."
+                },
+                {
+                  "disabled": false,
+                  "key": "CreatedBefore",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CreatedSince",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ModifiedBefore",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ModifiedSince",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1dca686-15c0-4e61-ab19-04c03a05e01f",
+              "name": "A list of person records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cbed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "AinmID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ViafID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "CountyID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PlaceID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "GeoNameID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Occupation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "CreatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "CreatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "ModifiedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "ModifiedSince",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ID\": 4519,\n    \"DateCreated\": \"1958-10-31T06:27:20.837Z\",\n    \"DateModified\": \"1949-10-21T20:02:32.460Z\",\n    \"Names\": [\n      {\n        \"FirstNames\": \"string\",\n        \"Surname\": \"string\",\n        \"FullName\": \"string\"\n      },\n      {\n        \"FirstNames\": \"string\",\n        \"Surname\": \"string\",\n        \"FullName\": \"string\"\n      }\n    ],\n    \"Gender\": \"m\",\n    \"Age\": {\n      \"Age\": 4499,\n      \"Qualifier\": \"OVER\",\n      \"RangeMax\": 3981\n    },\n    \"AinmID\": 3360,\n    \"ViafID\": 9074,\n    \"BirthDate\": {\n      \"IsoDate\": \"2008-11-01\",\n      \"IsoStartDate\": \"1953-12-05\",\n      \"IsoEndDate\": \"1953-05-17\",\n      \"IsoDuration\": \"string\",\n      \"Accuracy\": \"APPROX\",\n      \"Year\": 4178,\n      \"Month\": 2879,\n      \"Day\": 9478,\n      \"PeriodStartYear\": 1785,\n      \"PeriodStartMonth\": 550,\n      \"PeriodStartDay\": 5657,\n      \"PeriodEndYear\": 5216,\n      \"PeriodEndMonth\": 8372,\n      \"PeriodEndDay\": 8296\n    },\n    \"DeathDate\": {\n      \"IsoDate\": \"2005-08-06\",\n      \"IsoStartDate\": \"2021-08-23\",\n      \"IsoEndDate\": \"1983-05-27\",\n      \"IsoDuration\": \"string\",\n      \"Accuracy\": \"QUESTION\",\n      \"Year\": 8348,\n      \"Month\": 4326,\n      \"Day\": 3220,\n      \"PeriodStartYear\": 2050,\n      \"PeriodStartMonth\": 1104,\n      \"PeriodStartDay\": 9801,\n      \"PeriodEndYear\": 8182,\n      \"PeriodEndMonth\": 8084,\n      \"PeriodEndDay\": 1927\n    },\n    \"BirthCounty\": {\n      \"LogainmID\": 4438,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"QualifiedNameEN\": \"string\",\n      \"QualifiedNameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 8900.919558408948,\n        \"Longitude\": 7417.865036699492\n      }\n    },\n    \"BirthPlaceIreland\": {\n      \"LogainmID\": 4087,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 1825.892175028454,\n        \"Longitude\": 1423.998105479042\n      },\n      \"Counties\": [\n        {\n          \"LogainmID\": 5614,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"LogainmID\": 9030,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"BirthCountry\": {\n      \"IsoCode\": \"string\",\n      \"GeoNameID\": 4208,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 8385.226017917228,\n        \"Longitude\": 4023.3337881092534\n      }\n    },\n    \"BirthPlaceAbroad\": {\n      \"GeoNameID\": 1743,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 7280.69678705863,\n        \"Longitude\": 7984.615049316009\n      },\n      \"Country\": {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 2402,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 4409.522219993421,\n          \"Longitude\": 8893.929539848068\n        }\n      }\n    },\n    \"Counties\": [\n      {\n        \"LogainmID\": 2072,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"QualifiedNameEN\": \"string\",\n        \"QualifiedNameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 4957.863196434169,\n          \"Longitude\": 1222.4350309427489\n        }\n      },\n      {\n        \"LogainmID\": 2175,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"QualifiedNameEN\": \"string\",\n        \"QualifiedNameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 3979.2081739539763,\n          \"Longitude\": 1926.1750762699749\n        }\n      }\n    ],\n    \"AddressesIreland\": [\n      {\n        \"LogainmID\": 7147,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 2294.3425017952213,\n          \"Longitude\": 9409.308834516758\n        },\n        \"Counties\": [\n          {\n            \"LogainmID\": 5213,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"LogainmID\": 1132,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"LogainmID\": 6016,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 9917.809906443272,\n          \"Longitude\": 8504.988086190147\n        },\n        \"Counties\": [\n          {\n            \"LogainmID\": 8955,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"LogainmID\": 9060,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"Countries\": [\n      {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 6790,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 5789.638844926123,\n          \"Longitude\": 7946.810596902211\n        }\n      },\n      {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 7993,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 9127.567284350047,\n          \"Longitude\": 9569.813106680367\n        }\n      }\n    ],\n    \"AddressesAbroad\": [\n      {\n        \"GeoNameID\": 2065,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 6040.709225820016,\n          \"Longitude\": 185.43341006595492\n        },\n        \"Country\": {\n          \"IsoCode\": \"string\",\n          \"GeoNameID\": 121,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"GeoNameID\": 677,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 7982.772048521231,\n          \"Longitude\": 3989.504717162338\n        },\n        \"Country\": {\n          \"IsoCode\": \"string\",\n          \"GeoNameID\": 3547,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"Occupations\": [\n      {\n        \"ID\": \"string\",\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\"\n      },\n      {\n        \"ID\": \"string\",\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\"\n      }\n    ],\n    \"CollectorRelationship\": \"UNK\"\n  },\n  {\n    \"ID\": 5779,\n    \"DateCreated\": \"2019-08-11T22:25:52.287Z\",\n    \"DateModified\": \"1990-07-17T20:31:13.815Z\",\n    \"Names\": [\n      {\n        \"FirstNames\": \"string\",\n        \"Surname\": \"string\",\n        \"FullName\": \"string\"\n      },\n      {\n        \"FirstNames\": \"string\",\n        \"Surname\": \"string\",\n        \"FullName\": \"string\"\n      }\n    ],\n    \"Gender\": \"m\",\n    \"Age\": {\n      \"Age\": 8091,\n      \"Qualifier\": \"OVER\",\n      \"RangeMax\": 428\n    },\n    \"AinmID\": 4159,\n    \"ViafID\": 605,\n    \"BirthDate\": {\n      \"IsoDate\": \"2006-07-26\",\n      \"IsoStartDate\": \"1960-10-13\",\n      \"IsoEndDate\": \"1952-10-11\",\n      \"IsoDuration\": \"string\",\n      \"Accuracy\": \"APPROX\",\n      \"Year\": 152,\n      \"Month\": 9449,\n      \"Day\": 3746,\n      \"PeriodStartYear\": 9029,\n      \"PeriodStartMonth\": 820,\n      \"PeriodStartDay\": 3310,\n      \"PeriodEndYear\": 1476,\n      \"PeriodEndMonth\": 4036,\n      \"PeriodEndDay\": 746\n    },\n    \"DeathDate\": {\n      \"IsoDate\": \"2020-08-26\",\n      \"IsoStartDate\": \"2014-06-14\",\n      \"IsoEndDate\": \"2002-02-20\",\n      \"IsoDuration\": \"string\",\n      \"Accuracy\": \"APPROX\",\n      \"Year\": 141,\n      \"Month\": 6567,\n      \"Day\": 6738,\n      \"PeriodStartYear\": 7258,\n      \"PeriodStartMonth\": 7838,\n      \"PeriodStartDay\": 2599,\n      \"PeriodEndYear\": 1089,\n      \"PeriodEndMonth\": 1537,\n      \"PeriodEndDay\": 1523\n    },\n    \"BirthCounty\": {\n      \"LogainmID\": 2161,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"QualifiedNameEN\": \"string\",\n      \"QualifiedNameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 5352.81678874213,\n        \"Longitude\": 8645.265478034586\n      }\n    },\n    \"BirthPlaceIreland\": {\n      \"LogainmID\": 2571,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 6056.523231118912,\n        \"Longitude\": 1820.8893217137222\n      },\n      \"Counties\": [\n        {\n          \"LogainmID\": 5228,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"LogainmID\": 1145,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"BirthCountry\": {\n      \"IsoCode\": \"string\",\n      \"GeoNameID\": 9409,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 2151.285113715319,\n        \"Longitude\": 9270.769962256189\n      }\n    },\n    \"BirthPlaceAbroad\": {\n      \"GeoNameID\": 889,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 3691.1668781579588,\n        \"Longitude\": 7029.651457313835\n      },\n      \"Country\": {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 4513,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 2870.6310616032606,\n          \"Longitude\": 996.6059559305452\n        }\n      }\n    },\n    \"Counties\": [\n      {\n        \"LogainmID\": 3276,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"QualifiedNameEN\": \"string\",\n        \"QualifiedNameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 4430.514925936985,\n          \"Longitude\": 4587.650449852891\n        }\n      },\n      {\n        \"LogainmID\": 98,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"QualifiedNameEN\": \"string\",\n        \"QualifiedNameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 6387.551457335079,\n          \"Longitude\": 9798.40851467669\n        }\n      }\n    ],\n    \"AddressesIreland\": [\n      {\n        \"LogainmID\": 6615,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 5595.191770973283,\n          \"Longitude\": 6194.737671284695\n        },\n        \"Counties\": [\n          {\n            \"LogainmID\": 6348,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"LogainmID\": 4967,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"LogainmID\": 6126,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 3186.1574246503997,\n          \"Longitude\": 6193.630994811241\n        },\n        \"Counties\": [\n          {\n            \"LogainmID\": 3000,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"LogainmID\": 1993,\n            \"NameEN\": \"string\",\n            \"NameGA\": \"string\",\n            \"QualifiedNameEN\": \"string\",\n            \"QualifiedNameGA\": \"string\",\n            \"Coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"Countries\": [\n      {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 4724,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 8182.8330853007665,\n          \"Longitude\": 8223.642294790869\n        }\n      },\n      {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 3346,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 6140.309852217284,\n          \"Longitude\": 5139.402011142267\n        }\n      }\n    ],\n    \"AddressesAbroad\": [\n      {\n        \"GeoNameID\": 2782,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 5367.78157108366,\n          \"Longitude\": 4356.629713810219\n        },\n        \"Country\": {\n          \"IsoCode\": \"string\",\n          \"GeoNameID\": 2801,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"GeoNameID\": 9273,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 5551.273576822469,\n          \"Longitude\": 2582.2318033167758\n        },\n        \"Country\": {\n          \"IsoCode\": \"string\",\n          \"GeoNameID\": 9972,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"Longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"Occupations\": [\n      {\n        \"ID\": \"string\",\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\"\n      },\n      {\n        \"ID\": \"string\",\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\"\n      }\n    ],\n    \"CollectorRelationship\": \"PAR\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e44e779e-1eb1-4e6f-b795-31a1cdc71490",
+              "name": "Unauthorized — missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cbed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "AinmID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ViafID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "CountyID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PlaceID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "GeoNameID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Occupation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "CreatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "CreatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "ModifiedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "ModifiedSince",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e09d763f-992b-45c3-957c-b37f15d8adac",
+          "name": "Get an individual person",
+          "request": {
+            "name": "Get an individual person",
+            "description": {},
+            "url": {
+              "path": [
+                "cbed",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac36ca62-ee35-4168-bce4-734a5ea7ccbc",
+              "name": "A single person record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cbed",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ID\": 8035,\n  \"DateCreated\": \"2015-02-02T07:29:13.188Z\",\n  \"DateModified\": \"2001-03-31T07:23:17.624Z\",\n  \"Names\": [\n    {\n      \"FirstNames\": \"string\",\n      \"Surname\": \"string\",\n      \"FullName\": \"string\"\n    },\n    {\n      \"FirstNames\": \"string\",\n      \"Surname\": \"string\",\n      \"FullName\": \"string\"\n    }\n  ],\n  \"Gender\": \"m\",\n  \"Age\": {\n    \"Age\": 6716,\n    \"Qualifier\": \"APPROX\",\n    \"RangeMax\": 622\n  },\n  \"AinmID\": 262,\n  \"ViafID\": 5464,\n  \"BirthDate\": {\n    \"IsoDate\": \"1960-06-06\",\n    \"IsoStartDate\": \"2011-06-23\",\n    \"IsoEndDate\": \"2006-07-16\",\n    \"IsoDuration\": \"string\",\n    \"Accuracy\": \"APPROX\",\n    \"Year\": 9206,\n    \"Month\": 471,\n    \"Day\": 5009,\n    \"PeriodStartYear\": 3795,\n    \"PeriodStartMonth\": 7749,\n    \"PeriodStartDay\": 193,\n    \"PeriodEndYear\": 901,\n    \"PeriodEndMonth\": 5463,\n    \"PeriodEndDay\": 6783\n  },\n  \"DeathDate\": {\n    \"IsoDate\": \"2022-07-05\",\n    \"IsoStartDate\": \"1947-05-04\",\n    \"IsoEndDate\": \"1948-07-08\",\n    \"IsoDuration\": \"string\",\n    \"Accuracy\": \"APPROX\",\n    \"Year\": 6739,\n    \"Month\": 8226,\n    \"Day\": 647,\n    \"PeriodStartYear\": 1554,\n    \"PeriodStartMonth\": 7828,\n    \"PeriodStartDay\": 1010,\n    \"PeriodEndYear\": 5469,\n    \"PeriodEndMonth\": 7905,\n    \"PeriodEndDay\": 4664\n  },\n  \"BirthCounty\": {\n    \"LogainmID\": 2756,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"QualifiedNameEN\": \"string\",\n    \"QualifiedNameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 2430.3711443418897,\n      \"Longitude\": 9996.893073351612\n    }\n  },\n  \"BirthPlaceIreland\": {\n    \"LogainmID\": 1925,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 2784.9572282960376,\n      \"Longitude\": 160.90277931010255\n    },\n    \"Counties\": [\n      {\n        \"LogainmID\": 7313,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"QualifiedNameEN\": \"string\",\n        \"QualifiedNameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 6478.645072148563,\n          \"Longitude\": 4676.506866472395\n        }\n      },\n      {\n        \"LogainmID\": 4513,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"QualifiedNameEN\": \"string\",\n        \"QualifiedNameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 5442.268934554232,\n          \"Longitude\": 8547.414584793802\n        }\n      }\n    ]\n  },\n  \"BirthCountry\": {\n    \"IsoCode\": \"string\",\n    \"GeoNameID\": 440,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 6731.738984910693,\n      \"Longitude\": 9774.566676603821\n    }\n  },\n  \"BirthPlaceAbroad\": {\n    \"GeoNameID\": 8246,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 4762.598444603723,\n      \"Longitude\": 752.3278551160195\n    },\n    \"Country\": {\n      \"IsoCode\": \"string\",\n      \"GeoNameID\": 4857,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 7683.151572509911,\n        \"Longitude\": 4810.072759753528\n      }\n    }\n  },\n  \"Counties\": [\n    {\n      \"LogainmID\": 8315,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"QualifiedNameEN\": \"string\",\n      \"QualifiedNameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 6392.0621017707745,\n        \"Longitude\": 1122.5905312875561\n      }\n    },\n    {\n      \"LogainmID\": 4252,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"QualifiedNameEN\": \"string\",\n      \"QualifiedNameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 7030.341845241243,\n        \"Longitude\": 7327.217427487184\n      }\n    }\n  ],\n  \"AddressesIreland\": [\n    {\n      \"LogainmID\": 1488,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 6967.436960812019,\n        \"Longitude\": 4393.271333627693\n      },\n      \"Counties\": [\n        {\n          \"LogainmID\": 6480,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": 4794.006362751985,\n            \"Longitude\": 3403.4137695679647\n          }\n        },\n        {\n          \"LogainmID\": 6111,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": 7139.922541490966,\n            \"Longitude\": 6040.969338867967\n          }\n        }\n      ]\n    },\n    {\n      \"LogainmID\": 6080,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 4519.557027998442,\n        \"Longitude\": 2361.2617307877713\n      },\n      \"Counties\": [\n        {\n          \"LogainmID\": 6436,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": 9040.931861393998,\n            \"Longitude\": 4471.23256150417\n          }\n        },\n        {\n          \"LogainmID\": 2615,\n          \"NameEN\": \"string\",\n          \"NameGA\": \"string\",\n          \"QualifiedNameEN\": \"string\",\n          \"QualifiedNameGA\": \"string\",\n          \"Coordinates\": {\n            \"Latitude\": 4829.411087889298,\n            \"Longitude\": 7905.133121955179\n          }\n        }\n      ]\n    }\n  ],\n  \"Countries\": [\n    {\n      \"IsoCode\": \"string\",\n      \"GeoNameID\": 8651,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 2847.587755767328,\n        \"Longitude\": 4952.2514217815515\n      }\n    },\n    {\n      \"IsoCode\": \"string\",\n      \"GeoNameID\": 8803,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 7689.495448465948,\n        \"Longitude\": 1802.9114554881287\n      }\n    }\n  ],\n  \"AddressesAbroad\": [\n    {\n      \"GeoNameID\": 7553,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 4209.270037664143,\n        \"Longitude\": 2600.0042847846703\n      },\n      \"Country\": {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 7314,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 8356.658068029192,\n          \"Longitude\": 2939.7084768087943\n        }\n      }\n    },\n    {\n      \"GeoNameID\": 7568,\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\",\n      \"Coordinates\": {\n        \"Latitude\": 3080.0362819772877,\n        \"Longitude\": 9727.52301464904\n      },\n      \"Country\": {\n        \"IsoCode\": \"string\",\n        \"GeoNameID\": 7471,\n        \"NameEN\": \"string\",\n        \"NameGA\": \"string\",\n        \"Coordinates\": {\n          \"Latitude\": 4026.14168816714,\n          \"Longitude\": 5402.515956548106\n        }\n      }\n    }\n  ],\n  \"Occupations\": [\n    {\n      \"ID\": \"string\",\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\"\n    },\n    {\n      \"ID\": \"string\",\n      \"NameEN\": \"string\",\n      \"NameGA\": \"string\"\n    }\n  ],\n  \"CollectorRelationship\": \"GRPAR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cffd31b-6ece-406a-8d7e-35487d45e39b",
+              "name": "Unauthorized — missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cbed",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4177e22e-3a1b-4424-8aac-0c7cebbf5a67",
+              "name": "Not Found — resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cbed",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f1f3399-a0fd-493c-89c3-fbecbdbfb738",
+          "name": "Persons Database occupation reference list",
+          "request": {
+            "name": "Persons Database occupation reference list",
+            "description": {},
+            "url": {
+              "path": [
+                "cbed",
+                "occupations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3b679db-4da7-4dbc-817f-1d4332595578",
+              "name": "Occupation reference list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cbed",
+                    "occupations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ID\": \"string\",\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\"\n  },\n  {\n    \"ID\": \"string\",\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4411d21-6e6d-4b76-bced-b414818ec2e1",
+              "name": "Unauthorized — missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cbed",
+                    "occupations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.duchas.ie/api/v0.5",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7ebf15af-f947-40c3-b2db-64b2bedc6225",
+    "name": "Dúchas API (National Folklore Collection, UCD) CBÉ CBÉD API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Dúchas API exposes published content from the National Folklore Collection (Cnuasach Bhéaloideas Éireann) held at University College Dublin. It returns JSON across four databases: the Main Manuscript Collection (CBÉ), the Schools' Collection (CBÉS), the Photographic Collection (CBÉG) and the Persons Database (CBÉD). This description is derived faithfully from the public Dúchas API developer documentation and data dictionary maintained by the Gaois research group.\n\nContact Support:\n Name: Gaois / Dúchas\n Email: eolas@duchas.ie",
+      "type": "text/plain"
+    }
+  }
+}

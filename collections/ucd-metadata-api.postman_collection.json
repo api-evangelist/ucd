@@ -1,0 +1,163 @@
+{
+  "item": [
+    {
+      "id": "b9cfd8f9-5560-4d3e-a1b0-beec0c735aa5",
+      "name": "Metadata",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e15ed79f-98c9-428f-9f99-b2f2b10c0a6c",
+          "name": "General API metadata",
+          "request": {
+            "name": "General API metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "api"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9466a797-73fc-49a4-9caf-aa374e711512",
+              "name": "API metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0565aed-c156-462f-b277-7cdc958bf292",
+              "name": "Unauthorized — missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.duchas.ie/api/v0.5",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "932eb2b3-a233-4481-a109-432dab04cc37",
+    "name": "Dúchas API (National Folklore Collection, UCD) CBÉ Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Dúchas API exposes published content from the National Folklore Collection (Cnuasach Bhéaloideas Éireann) held at University College Dublin. It returns JSON across four databases: the Main Manuscript Collection (CBÉ), the Schools' Collection (CBÉS), the Photographic Collection (CBÉG) and the Persons Database (CBÉD). This description is derived faithfully from the public Dúchas API developer documentation and data dictionary maintained by the Gaois research group.\n\nContact Support:\n Name: Gaois / Dúchas\n Email: eolas@duchas.ie",
+      "type": "text/plain"
+    }
+  }
+}

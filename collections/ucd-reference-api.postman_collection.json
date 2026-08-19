@@ -1,0 +1,199 @@
+{
+  "item": [
+    {
+      "id": "2c7b8e36-5a0e-4f8b-9305-66083e766ca8",
+      "name": "Reference",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8185cf9-88fa-4f0f-a11b-5f2311189a07",
+          "name": "Irish county reference list",
+          "request": {
+            "name": "Irish county reference list",
+            "description": {},
+            "url": {
+              "path": [
+                "counties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0edbe0f3-0fa7-4660-81ce-c4f6d41fadeb",
+              "name": "Counties.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "counties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"LogainmID\": 4985,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"QualifiedNameEN\": \"string\",\n    \"QualifiedNameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 9015.914860631876,\n      \"Longitude\": 8205.52040789303\n    }\n  },\n  {\n    \"LogainmID\": 7245,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"QualifiedNameEN\": \"string\",\n    \"QualifiedNameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 1978.8265982596831,\n      \"Longitude\": 7372.788677777369\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4ab7640-f3f6-4362-a915-10deeeae9533",
+          "name": "Country reference list",
+          "request": {
+            "name": "Country reference list",
+            "description": {},
+            "url": {
+              "path": [
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00bf9a4a-f1a8-4adb-bd13-da3a172f8d12",
+              "name": "Countries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"IsoCode\": \"string\",\n    \"GeoNameID\": 4955,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 7405.148405126904,\n      \"Longitude\": 1725.4035618716423\n    }\n  },\n  {\n    \"IsoCode\": \"string\",\n    \"GeoNameID\": 1029,\n    \"NameEN\": \"string\",\n    \"NameGA\": \"string\",\n    \"Coordinates\": {\n      \"Latitude\": 1952.380586561474,\n      \"Longitude\": 3688.4273574280855\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.duchas.ie/api/v0.5",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c9394fc4-818e-48a7-9586-6f11ce2a90ff",
+    "name": "Dúchas API (National Folklore Collection, UCD) CBÉ Reference API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Dúchas API exposes published content from the National Folklore Collection (Cnuasach Bhéaloideas Éireann) held at University College Dublin. It returns JSON across four databases: the Main Manuscript Collection (CBÉ), the Schools' Collection (CBÉS), the Photographic Collection (CBÉG) and the Persons Database (CBÉD). This description is derived faithfully from the public Dúchas API developer documentation and data dictionary maintained by the Gaois research group.\n\nContact Support:\n Name: Gaois / Dúchas\n Email: eolas@duchas.ie",
+      "type": "text/plain"
+    }
+  }
+}
