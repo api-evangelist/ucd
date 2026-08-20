@@ -54,6 +54,11 @@ apis:
   tags:
   - Digital Library
   - IIIF
+  - Image
+  - Cultural Heritage
+  tags_raw:
+  - Digital Library
+  - IIIF
   - Images
   - Cultural Heritage
   properties:
