@@ -2,278 +2,476 @@
 aid: ucd
 name: University College Dublin
 description: >-
-  University College Dublin (UCD) is Ireland's largest university and ranks
-  #126 in the QS World University Rankings 2025. Its public, machine-readable
-  footprint is concentrated in library and cultural-heritage systems rather
-  than a central developer portal: the UCD Digital Library exposes IIIF Image
-  and Presentation APIs plus a Geospatial Data API and unAPI endpoint, the
-  DSpace-based Research Repository UCD offers OAI-PMH harvesting and a REST
-  API, and the National Folklore Collection held at UCD is served via the
-  Dúchas API. There is no unified, self-service institutional API program;
-  most administrative and identity systems are gated behind institutional
-  affiliation.
+  University College Dublin is Ireland's largest university, a public research
+  institution in Belfield, Dublin. It operates no API programme: there is no
+  developer portal, no API key issuance, no OAuth authorization server and no
+  first-party OpenAPI anywhere on a ucd.ie host. What it does operate, verified
+  live on 2026-08-30, is three real machine-readable surfaces — an OAI-PMH 2.0
+  harvesting endpoint for Research Repository UCD (17,167 records, fourteen
+  metadata formats, plus an OpenAIRE CRIS base URL), a SAML 2.0 Shibboleth
+  Identity Provider registered in Edugate/eduGAIN as
+  https://sso.ucd.ie/idp/shibboleth with scope ucd.ie, and static Dublin Core
+  collection data exports from the UCD Digital Library. Everything else is
+  somebody else's engineering under UCD's name: the repository platform is
+  DSpace-CRIS hosted by 4Science, library discovery is Serials Solutions, and
+  the Dúchas API for the National Folklore Collection — the collection is UCD's,
+  the platform is DCU's — was withdrawn by its operator and now returns HTTP 500
+  on every path. This profile was re-run under the university pipeline on
+  2026-08-30 and the previously catalogued Dúchas contracts were removed.
 type: Index
+x-type: university
+x-category: Public Research University
 deliveryModel:
-  model: saas
+  model: self-hosted
   open_source: false
-  commercial: true
+  commercial: false
   callable_host: true
-  label: Hosted service · you call their endpoint
+  label: Institution-operated endpoints · no commercial API product
   confidence: high
   source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - probed
+  generated: '2026-08-30'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: self-serve
+  onboarding: none
   trial: false
   try_now: true
-  public: false
-  label: Free · Self-serve signup
+  public: true
+  label: Free and keyless where public; institutional affiliation where not
   confidence: high
   source:
-  - plans
-  - authentication
-  generated: '2026-07-22'
-  method: derived
+  - probed
+  generated: '2026-08-30'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ucd.png
 url: https://raw.githubusercontent.com/api-evangelist/ucd/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Ireland
-  - Library
-  - Digital Library
-  - IIIF
-  - Open Access
-  - Cultural Heritage
+- University
+- Higher Education
+- Education
+- Ireland
+- Europe
+- Public Research University
+- Research Repository
+- Open Access
+- OAI-PMH
+- Identity Federation
+- Cultural Heritage
+- Open Data
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 specificationVersion: '0.23'
+
 apis:
-- aid: ucd:digital-library-iiif
-  name: UCD Digital Library Image & Presentation API (IIIF)
+
+- aid: ucd:oai-pmh
+  name: Research Repository UCD — OAI-PMH 2.0
+  x-operator: institution
+  x-operator-evidence: >-
+    Served from researchrepository.ucd.ie, under UCD's own registrable domain.
+    The Identify response names repositoryName "Research Repository UCD",
+    repositoryIdentifier researchrepository.ucd.ie and adminEmail
+    research.repository@ucd.ie. The host CNAMEs to ucd7.4science.cloud /
+    ucd-researchrepository.prod.4science.cloud, so the PLATFORM is hosted by
+    4Science — but the OAI repository identity, sets, content and administrative
+    contact are UCD's, and OAI-PMH is a public protocol rather than a vendor
+    product contract, so this harvesting surface is treated as
+    institution-operated. The vendor's own REST contract on the same deployment
+    is recorded separately below as x-operator: tenant.
   description: >-
-    The UCD Digital Library Data Services expose IIIF Image API 2.0 and Presentation API 2.0 endpoints
-    serving images and manifests for digitized cultural-heritage objects and collections, consumable by
-    IIIF clients such as Mirador. Objects are addressed by namespaced internal identifiers (e.g. ivrla:31286).
-  humanURL: https://digital.ucd.ie/help/
-  tags:
-  - Digital Library
-  - IIIF
-  - Image
-  - Cultural Heritage
-  tags_raw:
-  - Digital Library
-  - IIIF
-  - Images
-  - Cultural Heritage
-  properties:
-  - type: Documentation
-    url: https://digital.ucd.ie/help/
-- aid: ucd:digital-library-geospatial
-  name: UCD Digital Library Geospatial Data API
-  description: >-
-    Geospatial Data API for the UCD Digital Library, providing boundary and search data for map visualisations
-    (used with LeafletJS) via geoFilter and geoBounds query parameters, alongside an unAPI metadata endpoint.
-  humanURL: https://digital.ucd.ie/help/
-  tags:
-  - Digital Library
-  - Geospatial
-  - Maps
-  - Open Data
-  properties:
-  - type: Documentation
-    url: https://digital.ucd.ie/help/
-- aid: ucd:research-repository
-  name: Research Repository UCD (DSpace OAI-PMH / REST)
-  description: >-
-    Research Repository UCD is the institution's green open-access scholarly repository, built on DSpace-CRIS.
-    It provides an OAI-PMH harvesting interface and the DSpace REST API for programmatic access to publications
-    and theses metadata.
+    Keyless, anonymous OAI-PMH 2.0 metadata harvesting for UCD's open-access
+    institutional repository. Verified live 2026-08-30: all six verbs return HTTP
+    200 with a well-formed envelope, ListIdentifiers reports completeListSize
+    17167, earliestDatestamp is 2007-08-22, granularity is
+    YYYY-MM-DDThh:mm:ssZ, and fourteen metadata formats are advertised (oai_dc,
+    qdc, dim, didl, mets, mods, ore, rdf, marc, marc21, etdms, uketd_dc,
+    rian_dc, rms_oai — rian_dc for the Irish national aggregator RIAN, uketd_dc
+    and etdms for theses). A second base URL, /server/oai/openairecris, serves
+    the OpenAIRE Guidelines for CRIS Managers 1.1 CERIF profile. Protocol errors
+    behave correctly: badVerb, cannotDisseminateFormat and idDoesNotExist are
+    returned inside HTTP 200 envelopes. Records carry Handle identifiers under
+    UCD's prefix 10197 and, in the dim format, qualified ORCID fields. NOTE the
+    base URL: the /oai/request path recorded in this file in June 2026 returns
+    405; the working path is /server/oai/request. The OpenAPI below is DERIVED by
+    API Evangelist from live probes — UCD publishes none.
   humanURL: https://libguides.ucd.ie/RRU/usage
-  baseURL: https://researchrepository.ucd.ie/oai/request
+  baseURL: https://researchrepository.ucd.ie/server/oai/request
   tags:
-  - Open Access
-  - Repository
   - OAI-PMH
-  - DSpace
+  - Repository
+  - Open Access
+  - Metadata
   - Research
+  - ORCID
   properties:
+  - type: OpenAPI
+    url: openapi/ucd-oai-pmh-openapi.yml
+  - type: Conformance
+    url: conformance/ucd-conformance.yml
+  - type: Errors
+    url: errors/ucd-errors.yml
   - type: Documentation
     url: https://libguides.ucd.ie/RRU/usage
-- aid: ucd:ucd-cb-api
-  name: University College Dublin CBÉ API
-  description: The CBÉ API from University College Dublin — 2 operation(s) for cbé.
-  humanURL: https://digital.ucd.ie/help/
-  baseURL: https://researchrepository.ucd.ie/oai/request
+  - type: Website
+    url: https://researchrepository.ucd.ie/
+  - type: x-oai-pmh-identify
+    url: https://researchrepository.ucd.ie/server/oai/request?verb=Identify
+  - type: x-oai-pmh-openaire-cris
+    url: https://researchrepository.ucd.ie/server/oai/openairecris?verb=Identify
+
+- aid: ucd:identity-federation
+  name: University College Dublin Identity Provider (Shibboleth / Edugate / eduGAIN)
+  x-operator: institution
+  x-operator-evidence: >-
+    entityID https://sso.ucd.ie/idp/shibboleth, on UCD's own domain, registered
+    in eduGAIN (entity 684529) by registration authority http://www.heanet.ie —
+    Edugate, the Irish national federation — with shibmd scope ucd.ie and display
+    names "University College Dublin" / "An Coláiste Ollscoile, Baile Átha
+    Cliath". SIRTFI asserted. First seen in eduGAIN 2017-04-13. DNS disclosure:
+    sso.ucd.ie CNAMEs to dockcl02-prod-lb.heanet.ie, so the IdP is hosted on
+    HEAnet infrastructure — Ireland's national education and research network,
+    which also operates the Edugate federation. HEAnet is a sector body serving
+    UCD, not a commercial SaaS platform with a contract of its own, and the
+    entityID, scope, attribute release and federation registration are UCD's, so
+    this is recorded as institution-operated with the hosting stated rather than
+    hidden.
+  description: >-
+    UCD's SAML 2.0 Shibboleth Identity Provider, and the institution's only
+    authentication surface it runs itself. It is machine-readable by definition —
+    a federated IdP publishes SAML metadata — and is the kind of institutional
+    surface that is almost never catalogued. IMPORTANT probing finding: the
+    entityID URL https://sso.ucd.ie/idp/shibboleth returns HTTP 200 with
+    Content-Type application/xml, but the body is the STOCK Shibboleth example
+    metadata that ships with the software (entityID "https://idp.exanple.com/idp",
+    Scope "example.com", localhost endpoints). A status-code-only check would
+    credit that as UCD's metadata; it is not. The authoritative machine-readable
+    record is the Edugate/eduGAIN aggregate, which is where the pointer below
+    goes. No API credential is obtainable here — access is by institutional
+    affiliation, not registration.
+  humanURL: https://technical.edugain.org/entities
+  baseURL: https://sso.ucd.ie/idp/shibboleth
   tags:
-  - CBÉ
+  - Identity Federation
+  - SAML
+  - Shibboleth
+  - eduGAIN
+  - Edugate
+  - Single Sign-On
   properties:
-  - type: OpenAPI
-    url: openapi/ucd-cb-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gaois.ie
-  - type: GitHub
-    url: https://github.com/gaois/DuchasAPI-docs
-  - type: Authentication
-    url: https://docs.gaois.ie
-  - type: JSONSchema
-    url: json-schema/ucd-photograph-schema.json
-  - type: Vocabulary
-    url: vocabulary/ucd-vocabulary.yml
-  - type: Rules
-    url: rules/ucd-rules.yml
-  - type: JSONLD
-    url: json-ld/ucd-context.jsonld
-- aid: ucd:ucd-cb-d-api
-  name: University College Dublin CBÉD API
-  description: The CBÉD API from University College Dublin — 3 operation(s) for cbéd.
-  humanURL: https://digital.ucd.ie/help/
-  baseURL: https://researchrepository.ucd.ie/oai/request
-  tags:
-  - CBÉD
-  properties:
-  - type: OpenAPI
-    url: openapi/ucd-cb-d-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gaois.ie
-  - type: GitHub
-    url: https://github.com/gaois/DuchasAPI-docs
-  - type: Authentication
-    url: https://docs.gaois.ie
-  - type: JSONSchema
-    url: json-schema/ucd-photograph-schema.json
-  - type: Vocabulary
-    url: vocabulary/ucd-vocabulary.yml
-  - type: Rules
-    url: rules/ucd-rules.yml
-  - type: JSONLD
-    url: json-ld/ucd-context.jsonld
-- aid: ucd:ucd-cb-g-api
-  name: University College Dublin CBÉG API
-  description: The CBÉG API from University College Dublin — 3 operation(s) for cbég.
-  humanURL: https://digital.ucd.ie/help/
-  baseURL: https://researchrepository.ucd.ie/oai/request
-  tags:
-  - CBÉG
-  properties:
-  - type: OpenAPI
-    url: openapi/ucd-cb-g-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gaois.ie
-  - type: GitHub
-    url: https://github.com/gaois/DuchasAPI-docs
-  - type: Authentication
-    url: https://docs.gaois.ie
-  - type: JSONSchema
-    url: json-schema/ucd-photograph-schema.json
-  - type: Vocabulary
-    url: vocabulary/ucd-vocabulary.yml
-  - type: Rules
-    url: rules/ucd-rules.yml
-  - type: JSONLD
-    url: json-ld/ucd-context.jsonld
-- aid: ucd:ucd-cb-s-api
-  name: University College Dublin CBÉS API
-  description: The CBÉS API from University College Dublin — 3 operation(s) for cbés.
-  humanURL: https://digital.ucd.ie/help/
-  baseURL: https://researchrepository.ucd.ie/oai/request
-  tags:
-  - CBÉS
-  properties:
-  - type: OpenAPI
-    url: openapi/ucd-cb-s-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gaois.ie
-  - type: GitHub
-    url: https://github.com/gaois/DuchasAPI-docs
-  - type: Authentication
-    url: https://docs.gaois.ie
-  - type: JSONSchema
-    url: json-schema/ucd-photograph-schema.json
-  - type: Vocabulary
-    url: vocabulary/ucd-vocabulary.yml
-  - type: Rules
-    url: rules/ucd-rules.yml
-  - type: JSONLD
-    url: json-ld/ucd-context.jsonld
-- aid: ucd:ucd-metadata-api
-  name: University College Dublin Metadata API
-  description: The Metadata API from University College Dublin — 1 operation(s) for metadata.
-  humanURL: https://digital.ucd.ie/help/
-  baseURL: https://researchrepository.ucd.ie/oai/request
-  tags:
-  - Metadata
-  properties:
-  - type: OpenAPI
-    url: openapi/ucd-metadata-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gaois.ie
-  - type: GitHub
-    url: https://github.com/gaois/DuchasAPI-docs
-  - type: Authentication
-    url: https://docs.gaois.ie
-  - type: JSONSchema
-    url: json-schema/ucd-photograph-schema.json
-  - type: Vocabulary
-    url: vocabulary/ucd-vocabulary.yml
-  - type: Rules
-    url: rules/ucd-rules.yml
-  - type: JSONLD
-    url: json-ld/ucd-context.jsonld
-- aid: ucd:ucd-reference-api
-  name: University College Dublin Reference API
-  description: The Reference API from University College Dublin — 2 operation(s) for reference.
-  humanURL: https://digital.ucd.ie/help/
-  baseURL: https://researchrepository.ucd.ie/oai/request
-  tags:
-  - Reference
-  properties:
-  - type: OpenAPI
-    url: openapi/ucd-reference-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gaois.ie
-  - type: GitHub
-    url: https://github.com/gaois/DuchasAPI-docs
-  - type: Authentication
-    url: https://docs.gaois.ie
-  - type: JSONSchema
-    url: json-schema/ucd-photograph-schema.json
-  - type: Vocabulary
-    url: vocabulary/ucd-vocabulary.yml
-  - type: Rules
-    url: rules/ucd-rules.yml
-  - type: JSONLD
-    url: json-ld/ucd-context.jsonld
-common:
-  - type: AgenticAccess
-    url: agentic-access/ucd-agentic-access.yml
-  - type: DomainSecurity
-    url: security/ucd-domain-security.yml
+  - type: IdentityFederation
+    url: https://technical.edugain.org/entities
   - type: Authentication
     url: authentication/ucd-authentication.yml
+  - type: Conformance
+    url: conformance/ucd-conformance.yml
+  - type: x-saml-entity-id
+    url: https://sso.ucd.ie/idp/shibboleth
+
+- aid: ucd:digital-library-data
+  name: UCD Digital Library collection data exports
+  x-operator: institution
+  x-operator-evidence: >-
+    digital.ucd.ie resolves to 193.1.173.9 — a HEAnet/UCD address, no vendor
+    CNAME. The site identifies itself as UCD Library's own service, contactable
+    at digital.library@ucd.ie.
+  description: >-
+    Static, keyless Dublin Core metadata exports for UCD Library's digital
+    cultural-heritage collections — metadata as CSV and JSON, plus facets,
+    subjects and a TimelineJS export, all linked from a published Data page.
+    Files rather than an API, and small: the metadata export was 2.2KB on
+    2026-08-30. This is what remains after a platform decommissioning. The
+    IIIF Image API 2.0, IIIF Presentation API 2.0, Geospatial Data API and
+    unAPI endpoint catalogued here in June 2026 NO LONGER EXIST — digital.ucd.ie
+    /help/, /api, /iiif and /view/ all return 404, and the site now states it is
+    a "temporary access website" pending procurement of a new digital library
+    access and preservation platform in 2026, built in the meantime on
+    CollectionBuilder-CSV. Those two entries have been replaced by this one.
+  humanURL: https://digital.ucd.ie/data.html
+  baseURL: https://digital.ucd.ie
+  tags:
+  - Open Data
+  - Digital Library
+  - Cultural Heritage
+  - Dublin Core
+  - Static Data
+  properties:
+  - type: OpenData
+    url: https://digital.ucd.ie/data.html
+  - type: Documentation
+    url: https://digital.ucd.ie/about
+  - type: x-data-metadata-json
+    url: https://digital.ucd.ie/assets/data/metadata.json
+  - type: x-data-metadata-csv
+    url: https://digital.ucd.ie/assets/data/metadata.csv
+
+- aid: ucd:dspace-rest
+  name: Research Repository UCD — DSpace-CRIS REST API (4Science)
+  x-operator: tenant
+  x-operator-evidence: >-
+    researchrepository.ucd.ie CNAMEs to ucd7.4science.cloud ->
+    ucd-researchrepository.prod.4science.cloud. The REST root reports
+    dspaceVersion "DSpace 7.6.1" and crisVersion "cris-2023.02.05". The
+    interface, its ~90 HAL link relations and its error vocabulary are upstream
+    DSpace-CRIS's, shipped identically to every 4Science customer.
+  description: >-
+    A live DSpace-CRIS 7.6.1 HAL REST API on UCD's branded repository host,
+    advertising roughly ninety link relations including items, collections,
+    communities, discover, authn, oidc, orcidqueues, orcidhistories, versions and
+    usagereports. The DATA is UCD's; the CONTRACT is DSpace's and 4Science's. No
+    specification for it is saved in this repository, and none should be — it
+    would credit UCD with a vendor's engineering and would be the same document
+    every other 4Science institution ships. Recorded here because the tenant
+    relationship is a real institutional fact. PROBING NOTE: the repository's
+    human-facing Angular UI is behind a bot challenge — every HTML path,
+    including the site root and item handle pages, returns HTTP 405 with a
+    "Human Verification" body to scripted clients. That is bot-blocked, not
+    dead; the /server/api and /server/oai paths answer normally.
+  humanURL: https://researchrepository.ucd.ie/
+  baseURL: https://researchrepository.ucd.ie/server/api
+  tags:
+  - Repository
+  - DSpace
+  - Tenant
+  - Research
+  - Ireland
+  properties:
+  - type: ResearchRepository
+    url: https://researchrepository.ucd.ie/
+  - type: x-rest-root
+    url: https://researchrepository.ucd.ie/server/api
+
+- aid: ucd:duchas
+  name: Dúchas API — National Folklore Collection (operated by DCU)
+  x-operator: tenant
+  x-operator-evidence: >-
+    Host www.duchas.ie is not under ucd.ie. The API documentation at
+    docs.gaois.ie is published by the Gaois research group, Fiontar & Scoil na
+    Gaeilge, Dublin City University, and directs API feedback to gaois@dcu.ie;
+    the spec previously held here carried info.contact "Gaois / Dúchas"
+    <eolas@duchas.ie> and servers https://www.duchas.ie/api/v0.5. UCD's role is
+    custodian of the collection — the documentation directs data-dump requests to
+    the NFC at bealoideas@ucd.ie.
+  description: >-
+    The National Folklore Collection (Cnuasach Bhéaloideas Éireann) is held at
+    UCD; the Dúchas digitisation platform and its API are built and operated by
+    DCU's Gaois research group. THE API IS WITHDRAWN. Verified 2026-08-30:
+    https://www.duchas.ie/api/v0.5/api, /api/v0.6/api, /api and /api/v0.5/cbes
+    all return HTTP 500 IIS error pages, and the v0.6 documentation states in its
+    own words that this "is a prerelease version of the Dúchas API that is no
+    longer available", with a v1.0 release pending and data dumps available on
+    request in the interim. The June 2026 profile read that 500 as "live but
+    gated" and saved six per-tag OpenAPIs plus twelve collections and their
+    derived schemas, structures, examples, rules, vocabulary, JSON-LD and
+    agentic-access files under UCD's slug — thirty-four files describing another
+    university's contract for an endpoint that does not answer. All of them were
+    removed on 2026-08-30. The relationship is kept; the contract is not.
+  humanURL: https://www.duchas.ie/en
+  tags:
+  - Cultural Heritage
+  - Folklore
+  - Tenant
+  - Withdrawn
+  - Ireland
+  properties:
+  - type: Documentation
+    url: https://docs.gaois.ie/en/data/duchas/v0.6/api
   - type: Website
-    url: https://www.ucd.ie/
-  - type: GitHub
-    url: https://github.com/University-College-Dublin
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/university-college-dublin/
-  - type: DeveloperPortal
-    url: https://digital.ucd.ie/help/
-  - type: Plans
-    url: plans/ucd-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/ucd-rate-limits.yml
-  - type: FinOps
-    url: finops/ucd-finops.yml
-  - type: Review
-    url: review.yml
+    url: https://www.duchas.ie/en
+  - type: x-operator-organization
+    url: https://www.dcu.ie/fiontar-scoil-na-gaeilge
+
+- aid: ucd:library-discovery
+  name: UCD Library discovery (Serials Solutions / Clarivate)
+  x-operator: tenant
+  x-operator-evidence: >-
+    UCD Library's journal and e-resource discovery links resolve to
+    https://jq6am9xs3s.search.serialssolutions.com/?L=JQ6AM9XS3S — a
+    customer-keyed subdomain of a vendor domain, not a ucd.ie host. Verified 200
+    on 2026-08-30.
+  description: >-
+    UCD Library's discovery layer runs on Serials Solutions (Clarivate/ProQuest)
+    under a customer key, not on a UCD host. It exposes a search interface for
+    people, not a documented public API, and no specification is held here. Listed
+    so the library-discovery surface class is accounted for rather than silently
+    missing.
+  humanURL: https://www.ucd.ie/library/
+  baseURL: https://jq6am9xs3s.search.serialssolutions.com/
+  tags:
+  - Library
+  - Discovery
+  - Tenant
+  - Vendor Platform
+  properties:
+  - type: LibraryCatalog
+    url: https://jq6am9xs3s.search.serialssolutions.com/?L=JQ6AM9XS3S
+  - type: Website
+    url: https://www.ucd.ie/library/
+
+common:
+- type: Website
+  url: https://www.ucd.ie/
+- type: GitHubOrganization
+  url: https://github.com/University-College-Dublin
+- type: LinkedIn
+  url: https://www.linkedin.com/school/university-college-dublin/
+- type: ResearchRepository
+  url: https://researchrepository.ucd.ie/
+- type: IdentityFederation
+  url: https://technical.edugain.org/entities
+- type: OpenData
+  url: https://digital.ucd.ie/data.html
+- type: CourseCatalog
+  url: https://hub.ucd.ie/usis/!W_HU_MENU.P_PUBLISH?p_tag=COURSECATALOGUE
+- type: LibraryCatalog
+  url: https://www.ucd.ie/library/
+- type: ResearchComputing
+  url: https://www.ucd.ie/itservices/ourservices/researchit/researchcomputing/
+- type: AIPolicy
+  url: https://www.ucd.ie/registrar/ucdstrategicpoliciesandinitatives/ai-at-ucd/
+- type: AITooling
+  url: https://www.ucd.ie/itservices/ourservices/communicationcollaboration/officeproductivity/aiservices/
+- type: Documentation
+  url: https://libguides.ucd.ie/RRU/usage
+- type: Support
+  url: https://www.ucd.ie/itservices/ourservices/researchit/
+- type: Blog
+  url: https://www.ucd.ie/newsandopinion/
+- type: Research
+  url: https://www.ucd.ie/research/
+- type: PrivacyPolicy
+  url: https://www.ucd.ie/privacy/
+- type: TermsOfService
+  url: https://www.ucd.ie/legal/
+- type: DataProtection
+  url: https://www.ucd.ie/gdpr/
+- type: FreedomOfInformation
+  url: https://www.ucd.ie/foi/
+- type: Conformance
+  url: conformance/ucd-conformance.yml
+- type: Authentication
+  url: authentication/ucd-authentication.yml
+- type: Errors
+  url: errors/ucd-errors.yml
+- type: Vocabulary
+  url: vocabulary/ucd-vocabulary.yml
+- type: DomainSecurity
+  url: security/ucd-domain-security.yml
+- type: Plans
+  url: plans/ucd-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ucd-rate-limits.yml
+- type: FinOps
+  url: finops/ucd-finops.yml
+- type: Review
+  url: review.yml
+
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+x-coverage:
+  state: none
+  reason: no_public_api
+  detail: >-
+    University College Dublin operates no public API programme — no developer
+    portal, no API key issuance, no OAuth authorization server, no first-party
+    OpenAPI, no llms.txt and no security.txt on any ucd.ie host — and this
+    profile now says so. Three institution-operated machine-readable surfaces do
+    exist and are catalogued: the OAI-PMH 2.0 harvesting endpoint of Research
+    Repository UCD (17,167 records, fourteen metadata formats, OpenAIRE CRIS
+    profile), the SAML 2.0 Shibboleth IdP registered in Edugate/eduGAIN, and the
+    UCD Digital Library's static Dublin Core data exports. None is a hosted API
+    product, and the single OpenAPI in this repository is DERIVED by API
+    Evangelist from live probes of the OAI-PMH endpoint, not published by UCD.
+    What was catalogued here on 2026-06-03 was a different institution's
+    contract: six per-tag OpenAPIs of the Dúchas API, whose info.contact is
+    "Gaois / Dúchas" <eolas@duchas.ie> and whose operator is the Gaois research
+    group at Dublin City University, all registered under UCD's slug with a
+    fabricated baseURL of https://researchrepository.ucd.ie/oai/request — a path
+    that returns 405 and does not serve those endpoints. Six times the apparent
+    footprint, on a host that does not run the software, for an API its own
+    documentation says "is no longer available" and which returns HTTP 500 on
+    every path. Those six specifications, their twelve collections, and every
+    schema, structure, example, ruleset, vocabulary, JSON-LD context and
+    agentic-access file derived from them — 34 files — were removed on
+    2026-08-30. Two further June entries described the UCD Digital Library's IIIF
+    Image, IIIF Presentation, Geospatial and unAPI endpoints; those were
+    decommissioned with the old platform and now 404, and were replaced by the
+    static data-export entry. The remaining machinery under UCD's name belongs to
+    someone else and is labelled as such: the repository platform is DSpace-CRIS
+    7.6.1 hosted by 4Science (researchrepository.ucd.ie CNAMEs to
+    ucd7.4science.cloud), and library discovery is Serials Solutions under a
+    customer key.
+  evidence:
+  - url: https://researchrepository.ucd.ie/server/oai/request?verb=Identify
+    status: 200
+  - url: https://researchrepository.ucd.ie/oai/request?verb=Identify
+    status: 405
+  - url: https://researchrepository.ucd.ie/server/api
+    status: 200
+  - url: https://sso.ucd.ie/idp/shibboleth
+    status: 200
+  - url: https://technical.edugain.org/api.php?action=list_entities&format=json
+    status: 200
+  - url: https://digital.ucd.ie/data.html
+    status: 200
+  - url: https://digital.ucd.ie/help/
+    status: 404
+  - url: https://digital.ucd.ie/api
+    status: 404
+  - url: https://www.duchas.ie/api/v0.5/api
+    status: 500
+  - url: https://www.duchas.ie/api/v0.6/api
+    status: 500
+  - url: https://docs.gaois.ie/en/data/duchas/v0.6/api
+    status: 200
+  - url: https://api.ucd.ie/
+    status: 0
+  - url: https://data.ucd.ie/
+    status: 0
+  - url: https://www.ucd.ie/llms.txt
+    status: 404
+  - url: https://www.ucd.ie/.well-known/security.txt
+    status: 404
+  - url: https://researchrepository.ucd.ie/
+    status: 405
+    note: >-
+      Bot challenge, not a dead host. The DSpace Angular UI answers scripted
+      clients with a "Human Verification" body on every HTML path; the API and
+      OAI-PMH paths on the same host return 200.
+  - url: https://digital.ucd.ie/assets/data/
+    status: 403
+    note: Directory listing denied; the individual export files return 200.
+  - url: https://www.linkedin.com/school/university-college-dublin/
+    status: 999
+    note: LinkedIn's standard scripted-client block. Live in a browser.
+  checked: '2026-08-30'
+
+x-enrichment:
+  pipeline: pipeline-university.md
+  run: '2026-08-30'
+  previous_run: '2026-06-03'
+  operator_axis_applied: true
+  institution_surfaces: 3
+  tenant_surfaces: 3
+  contracts_saved: 1
+  files_removed: 34
+  apis_entries_before: 9
+  apis_entries_after: 6
+  dead_pointers_removed: 9
+  note: >-
+    A correct re-profile of a misattributed institution LOWERS its score, and this
+    one should fall. Contract volume went from six specifications to one, and that
+    one is DERIVED by API Evangelist from live probes rather than published by
+    UCD. The corrections are: six Dúchas OpenAPIs (DCU/Gaois-operated, withdrawn)
+    and 28 files derived from them removed; two Digital Library entries describing
+    404 endpoints replaced; the OAI-PMH baseURL corrected from /oai/request (405)
+    to /server/oai/request (200); the DeveloperPortal pointer to
+    https://digital.ucd.ie/help/ removed as dead (404, and it was repeated on
+    eight apis[] entries); a 4Science hosting CNAME disclosed on the repository;
+    and a genuinely new institution-operated surface added — the Edugate/eduGAIN
+    SAML Identity Provider, with the caveat that its entityID URL serves stock
+    Shibboleth example metadata rather than UCD's own.
