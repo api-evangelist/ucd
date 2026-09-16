@@ -66,91 +66,29 @@ modified: '2026-08-30'
 specificationVersion: '0.23'
 
 apis:
-
-- aid: ucd:oai-pmh
-  name: Research Repository UCD — OAI-PMH 2.0
-  x-operator: institution
-  x-operator-evidence: >-
-    Served from researchrepository.ucd.ie, under UCD's own registrable domain.
-    The Identify response names repositoryName "Research Repository UCD",
-    repositoryIdentifier researchrepository.ucd.ie and adminEmail
-    research.repository@ucd.ie. The host CNAMEs to ucd7.4science.cloud /
-    ucd-researchrepository.prod.4science.cloud, so the PLATFORM is hosted by
-    4Science — but the OAI repository identity, sets, content and administrative
-    contact are UCD's, and OAI-PMH is a public protocol rather than a vendor
-    product contract, so this harvesting surface is treated as
-    institution-operated. The vendor's own REST contract on the same deployment
-    is recorded separately below as x-operator: tenant.
-  description: >-
-    Keyless, anonymous OAI-PMH 2.0 metadata harvesting for UCD's open-access
-    institutional repository. Verified live 2026-08-30: all six verbs return HTTP
-    200 with a well-formed envelope, ListIdentifiers reports completeListSize
-    17167, earliestDatestamp is 2007-08-22, granularity is
-    YYYY-MM-DDThh:mm:ssZ, and fourteen metadata formats are advertised (oai_dc,
-    qdc, dim, didl, mets, mods, ore, rdf, marc, marc21, etdms, uketd_dc,
-    rian_dc, rms_oai — rian_dc for the Irish national aggregator RIAN, uketd_dc
-    and etdms for theses). A second base URL, /server/oai/openairecris, serves
-    the OpenAIRE Guidelines for CRIS Managers 1.1 CERIF profile. Protocol errors
-    behave correctly: badVerb, cannotDisseminateFormat and idDoesNotExist are
-    returned inside HTTP 200 envelopes. Records carry Handle identifiers under
-    UCD's prefix 10197 and, in the dim format, qualified ORCID fields. NOTE the
-    base URL: the /oai/request path recorded in this file in June 2026 returns
-    405; the working path is /server/oai/request. The OpenAPI below is DERIVED by
-    API Evangelist from live probes — UCD publishes none.
-  humanURL: https://libguides.ucd.ie/RRU/usage
-  baseURL: https://researchrepository.ucd.ie/server/oai/request
-  tags:
-  - OAI-PMH
-  - Repository
-  - Open Access
-  - Metadata
-  - Research
-  - ORCID
-  properties:
-  - type: OpenAPI
-    url: openapi/ucd-oai-pmh-openapi.yml
-  - type: Conformance
-    url: conformance/ucd-conformance.yml
-  - type: Errors
-    url: errors/ucd-errors.yml
-  - type: Documentation
-    url: https://libguides.ucd.ie/RRU/usage
-  - type: Website
-    url: https://researchrepository.ucd.ie/
-  - type: x-oai-pmh-identify
-    url: https://researchrepository.ucd.ie/server/oai/request?verb=Identify
-  - type: x-oai-pmh-openaire-cris
-    url: https://researchrepository.ucd.ie/server/oai/openairecris?verb=Identify
-
 - aid: ucd:identity-federation
   name: University College Dublin Identity Provider (Shibboleth / Edugate / eduGAIN)
   x-operator: institution
   x-operator-evidence: >-
-    entityID https://sso.ucd.ie/idp/shibboleth, on UCD's own domain, registered
-    in eduGAIN (entity 684529) by registration authority http://www.heanet.ie —
-    Edugate, the Irish national federation — with shibmd scope ucd.ie and display
-    names "University College Dublin" / "An Coláiste Ollscoile, Baile Átha
-    Cliath". SIRTFI asserted. First seen in eduGAIN 2017-04-13. DNS disclosure:
-    sso.ucd.ie CNAMEs to dockcl02-prod-lb.heanet.ie, so the IdP is hosted on
-    HEAnet infrastructure — Ireland's national education and research network,
-    which also operates the Edugate federation. HEAnet is a sector body serving
-    UCD, not a commercial SaaS platform with a contract of its own, and the
-    entityID, scope, attribute release and federation registration are UCD's, so
-    this is recorded as institution-operated with the hosting stated rather than
-    hidden.
+    entityID https://sso.ucd.ie/idp/shibboleth, on UCD's own domain, registered in eduGAIN (entity 684529)
+    by registration authority http://www.heanet.ie — Edugate, the Irish national federation — with shibmd
+    scope ucd.ie and display names "University College Dublin" / "An Coláiste Ollscoile, Baile Átha Cliath".
+    SIRTFI asserted. First seen in eduGAIN 2017-04-13. DNS disclosure: sso.ucd.ie CNAMEs to dockcl02-prod-lb.heanet.ie,
+    so the IdP is hosted on HEAnet infrastructure — Ireland's national education and research network,
+    which also operates the Edugate federation. HEAnet is a sector body serving UCD, not a commercial
+    SaaS platform with a contract of its own, and the entityID, scope, attribute release and federation
+    registration are UCD's, so this is recorded as institution-operated with the hosting stated rather
+    than hidden.
   description: >-
-    UCD's SAML 2.0 Shibboleth Identity Provider, and the institution's only
-    authentication surface it runs itself. It is machine-readable by definition —
-    a federated IdP publishes SAML metadata — and is the kind of institutional
-    surface that is almost never catalogued. IMPORTANT probing finding: the
-    entityID URL https://sso.ucd.ie/idp/shibboleth returns HTTP 200 with
-    Content-Type application/xml, but the body is the STOCK Shibboleth example
-    metadata that ships with the software (entityID "https://idp.exanple.com/idp",
-    Scope "example.com", localhost endpoints). A status-code-only check would
-    credit that as UCD's metadata; it is not. The authoritative machine-readable
-    record is the Edugate/eduGAIN aggregate, which is where the pointer below
-    goes. No API credential is obtainable here — access is by institutional
-    affiliation, not registration.
+    UCD's SAML 2.0 Shibboleth Identity Provider, and the institution's only authentication surface it
+    runs itself. It is machine-readable by definition — a federated IdP publishes SAML metadata — and
+    is the kind of institutional surface that is almost never catalogued. IMPORTANT probing finding: the
+    entityID URL https://sso.ucd.ie/idp/shibboleth returns HTTP 200 with Content-Type application/xml,
+    but the body is the STOCK Shibboleth example metadata that ships with the software (entityID "https://idp.exanple.com/idp",
+    Scope "example.com", localhost endpoints). A status-code-only check would credit that as UCD's metadata;
+    it is not. The authoritative machine-readable record is the Edugate/eduGAIN aggregate, which is where
+    the pointer below goes. No API credential is obtainable here — access is by institutional affiliation,
+    not registration.
   humanURL: https://technical.edugain.org/entities
   baseURL: https://sso.ucd.ie/idp/shibboleth
   tags:
@@ -169,26 +107,21 @@ apis:
     url: conformance/ucd-conformance.yml
   - type: x-saml-entity-id
     url: https://sso.ucd.ie/idp/shibboleth
-
 - aid: ucd:digital-library-data
   name: UCD Digital Library collection data exports
   x-operator: institution
   x-operator-evidence: >-
-    digital.ucd.ie resolves to 193.1.173.9 — a HEAnet/UCD address, no vendor
-    CNAME. The site identifies itself as UCD Library's own service, contactable
-    at digital.library@ucd.ie.
+    digital.ucd.ie resolves to 193.1.173.9 — a HEAnet/UCD address, no vendor CNAME. The site identifies
+    itself as UCD Library's own service, contactable at digital.library@ucd.ie.
   description: >-
-    Static, keyless Dublin Core metadata exports for UCD Library's digital
-    cultural-heritage collections — metadata as CSV and JSON, plus facets,
-    subjects and a TimelineJS export, all linked from a published Data page.
-    Files rather than an API, and small: the metadata export was 2.2KB on
-    2026-08-30. This is what remains after a platform decommissioning. The
-    IIIF Image API 2.0, IIIF Presentation API 2.0, Geospatial Data API and
-    unAPI endpoint catalogued here in June 2026 NO LONGER EXIST — digital.ucd.ie
-    /help/, /api, /iiif and /view/ all return 404, and the site now states it is
-    a "temporary access website" pending procurement of a new digital library
-    access and preservation platform in 2026, built in the meantime on
-    CollectionBuilder-CSV. Those two entries have been replaced by this one.
+    Static, keyless Dublin Core metadata exports for UCD Library's digital cultural-heritage collections
+    — metadata as CSV and JSON, plus facets, subjects and a TimelineJS export, all linked from a published
+    Data page. Files rather than an API, and small: the metadata export was 2.2KB on 2026-08-30. This
+    is what remains after a platform decommissioning. The IIIF Image API 2.0, IIIF Presentation API 2.0,
+    Geospatial Data API and unAPI endpoint catalogued here in June 2026 NO LONGER EXIST — digital.ucd.ie
+    /help/, /api, /iiif and /view/ all return 404, and the site now states it is a "temporary access website"
+    pending procurement of a new digital library access and preservation platform in 2026, built in the
+    meantime on CollectionBuilder-CSV. Those two entries have been replaced by this one.
   humanURL: https://digital.ucd.ie/data.html
   baseURL: https://digital.ucd.ie
   tags:
@@ -206,29 +139,24 @@ apis:
     url: https://digital.ucd.ie/assets/data/metadata.json
   - type: x-data-metadata-csv
     url: https://digital.ucd.ie/assets/data/metadata.csv
-
 - aid: ucd:dspace-rest
   name: Research Repository UCD — DSpace-CRIS REST API (4Science)
   x-operator: tenant
   x-operator-evidence: >-
-    researchrepository.ucd.ie CNAMEs to ucd7.4science.cloud ->
-    ucd-researchrepository.prod.4science.cloud. The REST root reports
-    dspaceVersion "DSpace 7.6.1" and crisVersion "cris-2023.02.05". The
-    interface, its ~90 HAL link relations and its error vocabulary are upstream
-    DSpace-CRIS's, shipped identically to every 4Science customer.
+    researchrepository.ucd.ie CNAMEs to ucd7.4science.cloud -> ucd-researchrepository.prod.4science.cloud.
+    The REST root reports dspaceVersion "DSpace 7.6.1" and crisVersion "cris-2023.02.05". The interface,
+    its ~90 HAL link relations and its error vocabulary are upstream DSpace-CRIS's, shipped identically
+    to every 4Science customer.
   description: >-
-    A live DSpace-CRIS 7.6.1 HAL REST API on UCD's branded repository host,
-    advertising roughly ninety link relations including items, collections,
-    communities, discover, authn, oidc, orcidqueues, orcidhistories, versions and
-    usagereports. The DATA is UCD's; the CONTRACT is DSpace's and 4Science's. No
-    specification for it is saved in this repository, and none should be — it
-    would credit UCD with a vendor's engineering and would be the same document
-    every other 4Science institution ships. Recorded here because the tenant
-    relationship is a real institutional fact. PROBING NOTE: the repository's
-    human-facing Angular UI is behind a bot challenge — every HTML path,
-    including the site root and item handle pages, returns HTTP 405 with a
-    "Human Verification" body to scripted clients. That is bot-blocked, not
-    dead; the /server/api and /server/oai paths answer normally.
+    A live DSpace-CRIS 7.6.1 HAL REST API on UCD's branded repository host, advertising roughly ninety
+    link relations including items, collections, communities, discover, authn, oidc, orcidqueues, orcidhistories,
+    versions and usagereports. The DATA is UCD's; the CONTRACT is DSpace's and 4Science's. No specification
+    for it is saved in this repository, and none should be — it would credit UCD with a vendor's engineering
+    and would be the same document every other 4Science institution ships. Recorded here because the tenant
+    relationship is a real institutional fact. PROBING NOTE: the repository's human-facing Angular UI
+    is behind a bot challenge — every HTML path, including the site root and item handle pages, returns
+    HTTP 405 with a "Human Verification" body to scripted clients. That is bot-blocked, not dead; the
+    /server/api and /server/oai paths answer normally.
   humanURL: https://researchrepository.ucd.ie/
   baseURL: https://researchrepository.ucd.ie/server/api
   tags:
@@ -242,32 +170,26 @@ apis:
     url: https://researchrepository.ucd.ie/
   - type: x-rest-root
     url: https://researchrepository.ucd.ie/server/api
-
 - aid: ucd:duchas
   name: Dúchas API — National Folklore Collection (operated by DCU)
   x-operator: tenant
   x-operator-evidence: >-
-    Host www.duchas.ie is not under ucd.ie. The API documentation at
-    docs.gaois.ie is published by the Gaois research group, Fiontar & Scoil na
-    Gaeilge, Dublin City University, and directs API feedback to gaois@dcu.ie;
-    the spec previously held here carried info.contact "Gaois / Dúchas"
-    <eolas@duchas.ie> and servers https://www.duchas.ie/api/v0.5. UCD's role is
-    custodian of the collection — the documentation directs data-dump requests to
-    the NFC at bealoideas@ucd.ie.
+    Host www.duchas.ie is not under ucd.ie. The API documentation at docs.gaois.ie is published by the
+    Gaois research group, Fiontar & Scoil na Gaeilge, Dublin City University, and directs API feedback
+    to gaois@dcu.ie; the spec previously held here carried info.contact "Gaois / Dúchas" <eolas@duchas.ie>
+    and servers https://www.duchas.ie/api/v0.5. UCD's role is custodian of the collection — the documentation
+    directs data-dump requests to the NFC at bealoideas@ucd.ie.
   description: >-
-    The National Folklore Collection (Cnuasach Bhéaloideas Éireann) is held at
-    UCD; the Dúchas digitisation platform and its API are built and operated by
-    DCU's Gaois research group. THE API IS WITHDRAWN. Verified 2026-08-30:
-    https://www.duchas.ie/api/v0.5/api, /api/v0.6/api, /api and /api/v0.5/cbes
-    all return HTTP 500 IIS error pages, and the v0.6 documentation states in its
-    own words that this "is a prerelease version of the Dúchas API that is no
-    longer available", with a v1.0 release pending and data dumps available on
-    request in the interim. The June 2026 profile read that 500 as "live but
-    gated" and saved six per-tag OpenAPIs plus twelve collections and their
-    derived schemas, structures, examples, rules, vocabulary, JSON-LD and
-    agentic-access files under UCD's slug — thirty-four files describing another
-    university's contract for an endpoint that does not answer. All of them were
-    removed on 2026-08-30. The relationship is kept; the contract is not.
+    The National Folklore Collection (Cnuasach Bhéaloideas Éireann) is held at UCD; the Dúchas digitisation
+    platform and its API are built and operated by DCU's Gaois research group. THE API IS WITHDRAWN. Verified
+    2026-08-30: https://www.duchas.ie/api/v0.5/api, /api/v0.6/api, /api and /api/v0.5/cbes all return
+    HTTP 500 IIS error pages, and the v0.6 documentation states in its own words that this "is a prerelease
+    version of the Dúchas API that is no longer available", with a v1.0 release pending and data dumps
+    available on request in the interim. The June 2026 profile read that 500 as "live but gated" and saved
+    six per-tag OpenAPIs plus twelve collections and their derived schemas, structures, examples, rules,
+    vocabulary, JSON-LD and agentic-access files under UCD's slug — thirty-four files describing another
+    university's contract for an endpoint that does not answer. All of them were removed on 2026-08-30.
+    The relationship is kept; the contract is not.
   humanURL: https://www.duchas.ie/en
   tags:
   - Cultural Heritage
@@ -282,20 +204,16 @@ apis:
     url: https://www.duchas.ie/en
   - type: x-operator-organization
     url: https://www.dcu.ie/fiontar-scoil-na-gaeilge
-
 - aid: ucd:library-discovery
   name: UCD Library discovery (Serials Solutions / Clarivate)
   x-operator: tenant
   x-operator-evidence: >-
-    UCD Library's journal and e-resource discovery links resolve to
-    https://jq6am9xs3s.search.serialssolutions.com/?L=JQ6AM9XS3S — a
-    customer-keyed subdomain of a vendor domain, not a ucd.ie host. Verified 200
-    on 2026-08-30.
+    UCD Library's journal and e-resource discovery links resolve to https://jq6am9xs3s.search.serialssolutions.com/?L=JQ6AM9XS3S
+    — a customer-keyed subdomain of a vendor domain, not a ucd.ie host. Verified 200 on 2026-08-30.
   description: >-
-    UCD Library's discovery layer runs on Serials Solutions (Clarivate/ProQuest)
-    under a customer key, not on a UCD host. It exposes a search interface for
-    people, not a documented public API, and no specification is held here. Listed
-    so the library-discovery surface class is accounted for rather than silently
+    UCD Library's discovery layer runs on Serials Solutions (Clarivate/ProQuest) under a customer key,
+    not on a UCD host. It exposes a search interface for people, not a documented public API, and no specification
+    is held here. Listed so the library-discovery surface class is accounted for rather than silently
     missing.
   humanURL: https://www.ucd.ie/library/
   baseURL: https://jq6am9xs3s.search.serialssolutions.com/
@@ -309,7 +227,28 @@ apis:
     url: https://jq6am9xs3s.search.serialssolutions.com/?L=JQ6AM9XS3S
   - type: Website
     url: https://www.ucd.ie/library/
-
+- aid: ucd:ucd-oai-pmh-api
+  name: University College Dublin OAI PMH API
+  description: OAI-PMH 2.0 harvesting verbs.
+  humanURL: https://libguides.ucd.ie/RRU/usage
+  baseURL: https://researchrepository.ucd.ie/server/oai/request
+  tags:
+  - OAI-PMH
+  properties:
+  - type: OpenAPI
+    url: openapi/ucd-oai-pmh-api-openapi.yml
+  - type: Conformance
+    url: conformance/ucd-conformance.yml
+  - type: Errors
+    url: errors/ucd-errors.yml
+  - type: Documentation
+    url: https://libguides.ucd.ie/RRU/usage
+  - type: Website
+    url: https://researchrepository.ucd.ie/
+  - type: x-oai-pmh-identify
+    url: https://researchrepository.ucd.ie/server/oai/request?verb=Identify
+  - type: x-oai-pmh-openaire-cris
+    url: https://researchrepository.ucd.ie/server/oai/openairecris?verb=Identify
 common:
 - type: Website
   url: https://www.ucd.ie/
