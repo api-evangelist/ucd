@@ -97,6 +97,13 @@ apis:
   - Shibboleth
   - eduGAIN
   - Edugate
+  - SSO
+  tags_raw:
+  - Identity Federation
+  - SAML
+  - Shibboleth
+  - eduGAIN
+  - Edugate
   - Single Sign-On
   properties:
   - type: IdentityFederation
@@ -162,6 +169,12 @@ apis:
   tags:
   - Repository
   - DSpace
+  - Tenants
+  - Research
+  - Ireland
+  tags_raw:
+  - Repository
+  - DSpace
   - Tenant
   - Research
   - Ireland
@@ -194,6 +207,12 @@ apis:
   tags:
   - Cultural Heritage
   - Folklore
+  - Tenants
+  - Withdrawn
+  - Ireland
+  tags_raw:
+  - Cultural Heritage
+  - Folklore
   - Tenant
   - Withdrawn
   - Ireland
@@ -218,6 +237,11 @@ apis:
   humanURL: https://www.ucd.ie/library/
   baseURL: https://jq6am9xs3s.search.serialssolutions.com/
   tags:
+  - Library
+  - Discovery
+  - Tenants
+  - Vendor Platform
+  tags_raw:
   - Library
   - Discovery
   - Tenant
