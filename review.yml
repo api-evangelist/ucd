@@ -59,3 +59,80 @@ reviews:
       - url: https://data.ucd.ie/
         status: 0
         note: Cited IIIF/geospatial image base in third-party docs; did not resolve during probing.
+  - date: '2026-08-30'
+    rating: 2
+    summary: >-
+      Re-profiled under the API Evangelist university pipeline, which settles WHO
+      OPERATES each surface before any contract is saved. The June 2026 review
+      read the Dúchas API's HTTP 500 as "live but gated"; it is not. The Gaois
+      research group at Dublin City University — which builds and operates
+      duchas.ie for the National Folklore Collection held at UCD — states in its
+      own v0.6 documentation that this "is a prerelease version of the Dúchas API
+      that is no longer available", and every path returns a 500 IIS error page.
+      Six per-tag OpenAPIs of that DCU-operated, withdrawn contract had been saved
+      under UCD's slug with a baseURL of https://researchrepository.ucd.ie/oai/request,
+      a path that returns 405 and does not serve those endpoints. Those six specs
+      and the 28 files derived from them were removed. The UCD Digital Library's
+      IIIF Image, IIIF Presentation, Geospatial and unAPI endpoints are also gone:
+      the platform was decommissioned and digital.ucd.ie is now a declared
+      "temporary access website" on CollectionBuilder-CSV, with /help/, /api,
+      /iiif and /view/ all 404. What UCD does operate was verified live and is now
+      what this profile claims: an OAI-PMH 2.0 endpoint at the CORRECTED path
+      /server/oai/request (17,167 records, fourteen metadata formats, an OpenAIRE
+      CRIS base URL, correct protocol error codes), a SAML 2.0 Shibboleth Identity
+      Provider registered in Edugate/eduGAIN, and static Dublin Core data exports
+      from the Digital Library. No endpoints were fabricated; the one OpenAPI in
+      the repository is API Evangelist's derived description of the OAI-PMH
+      endpoint and is marked as such. A lower score than June is the correct
+      outcome.
+    endpoints:
+      - url: https://researchrepository.ucd.ie/server/oai/request?verb=Identify
+        status: 200
+        note: >-
+          The working OAI-PMH base URL. repositoryName "Research Repository UCD",
+          adminEmail research.repository@ucd.ie, protocolVersion 2.0.
+      - url: https://researchrepository.ucd.ie/oai/request?verb=Identify
+        status: 405
+        note: The path claimed in June 2026. It is not an OAI-PMH endpoint.
+      - url: https://researchrepository.ucd.ie/server/api
+        status: 200
+        note: >-
+          DSpace 7.6.1 / cris-2023.02.05 REST root. Host CNAMEs to
+          ucd7.4science.cloud — 4Science-hosted tenant, vendor contract.
+      - url: https://researchrepository.ucd.ie/
+        status: 405
+        note: Bot challenge ("Human Verification"), not a dead host.
+      - url: https://sso.ucd.ie/idp/shibboleth
+        status: 200
+        note: >-
+          Registered eduGAIN/Edugate IdP entityID, scope ucd.ie, SIRTFI — but the
+          body served here is the STOCK Shibboleth example metadata (entityID
+          idp.exanple.com, localhost endpoints), not UCD's.
+      - url: https://digital.ucd.ie/data.html
+        status: 200
+        note: Static Dublin Core exports (CSV/JSON, facets, subjects, TimelineJS).
+      - url: https://digital.ucd.ie/help/
+        status: 404
+        note: >-
+          Was 200 in June and was the DeveloperPortal pointer plus the Documentation
+          pointer on eight apis[] entries. Now dead; removed.
+      - url: https://digital.ucd.ie/iiif
+        status: 404
+        note: IIIF endpoints decommissioned with the old platform.
+      - url: https://www.duchas.ie/api/v0.5/api
+        status: 500
+        note: Withdrawn, not gated. Same for /api/v0.6/api and /api.
+      - url: https://docs.gaois.ie/en/data/duchas/v0.6/api
+        status: 200
+        note: >-
+          Operator's own documentation: "a prerelease version of the Dúchas API
+          that is no longer available". Feedback to gaois@dcu.ie.
+      - url: https://github.com/University-College-Dublin
+        status: 200
+        note: Official GitHub org, but it publishes ZERO public repositories.
+      - url: https://www.ucd.ie/llms.txt
+        status: 404
+        note: No agent-facing surface.
+      - url: https://www.ucd.ie/.well-known/security.txt
+        status: 404
+        note: No vulnerability disclosure surface.

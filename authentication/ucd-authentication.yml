@@ -1,29 +1,89 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/ucd-duchas.yaml
-summary:
-  types:
-  - apiKey
-  - http
-  api_key_in:
-  - header
-  - query
+---
+provider: University College Dublin
+providerId: ucd
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes on 2026-08-30 of sso.ucd.ie, researchrepository.ucd.ie,
+  digital.ucd.ie and the eduGAIN technical registry. Replaces the 2026-07-11
+  file, which was derived from openapi/ucd-duchas.yaml — a contract operated by
+  the Gaois research group at DCU, not by UCD, and withdrawn by its operator.
+description: >-
+  How authentication actually works across the surfaces University College Dublin
+  operates. UCD runs no API key programme, no OAuth authorization server and no
+  developer self-service credential of any kind. Its one institution-operated
+  authentication surface is federated SAML 2.0 single sign-on for people, which
+  is not an API credential and cannot be used by an unaffiliated client.
 schemes:
-- name: ApiKeyHeader
-  type: apiKey
-  in: header
-  parameter: X-Api-Key
-  sources:
-  - openapi/ucd-duchas.yaml
-- name: ApiKeyQuery
-  type: apiKey
-  in: query
-  parameter: apiKey
-  sources:
-  - openapi/ucd-duchas.yaml
-- name: BasicAuth
-  type: http
-  scheme: basic
-  description: Username is the API key; password is empty.
-  sources:
-  - openapi/ucd-duchas.yaml
+
+  - name: EdugateSAML
+    type: saml2
+    role: identity-provider
+    operator: institution
+    entityID: https://sso.ucd.ie/idp/shibboleth
+    software: Shibboleth Identity Provider
+    federation: Edugate (HEAnet), connected to eduGAIN
+    registrationAuthority: http://www.heanet.ie
+    scope: ucd.ie
+    sirtfi: true
+    firstSeenInEduGAIN: '2017-04-13'
+    metadata:
+      authoritative: >-
+        The Edugate / eduGAIN federation aggregate. UCD's entity is discoverable
+        via https://technical.edugain.org/entities and in
+        https://mds.edugain.org/edugain-v2.xml.
+      warning: >-
+        Do NOT consume https://sso.ucd.ie/idp/shibboleth as metadata. It returns
+        HTTP 200 with Content-Type application/xml, but the body is the stock
+        Shibboleth IdP example file — entityID "https://idp.exanple.com/idp"
+        (sic), Scope "example.com", endpoint Locations on https://localhost/.
+        Verified 2026-08-30.
+    bindings:
+      - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+      - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+    audience: >-
+      Staff, students and federated service providers. Access is granted by
+      institutional affiliation, not by registration; there is no route for an
+      unaffiliated developer or an agent to obtain a credential.
+
+  - name: AnonymousHarvest
+    type: none
+    role: public-read
+    operator: institution
+    applies:
+      - https://researchrepository.ucd.ie/server/oai/request
+      - https://researchrepository.ucd.ie/server/oai/openairecris
+      - https://digital.ucd.ie/assets/data/metadata.json
+    description: >-
+      The OAI-PMH endpoints and the UCD Digital Library static data exports are
+      anonymous and unauthenticated. All six OAI-PMH verbs answered without a
+      credential on 2026-08-30. No key, no token, no registration, no quota
+      disclosed.
+
+  - name: DSpaceRestAuthn
+    type: platform
+    role: vendor-contract
+    operator: tenant
+    applies:
+      - https://researchrepository.ucd.ie/server/api/authn
+      - https://researchrepository.ucd.ie/server/api/oidc
+    description: >-
+      The DSpace-CRIS 7.6.1 REST API on the same deployment advertises `authn`
+      and `oidc` link relations. This is DSpace's own authentication contract,
+      shipped by 4Science, on a UCD-branded tenant host
+      (researchrepository.ucd.ie CNAMEs to ucd7.4science.cloud). It is recorded
+      here as an institutional fact and is NOT credited to UCD as an
+      authentication programme of their own.
+
+notFound:
+  - surface: OAuth 2.0 / OpenID Connect for third parties
+    checked: >-
+      No authorization server, no client registration, no
+      /.well-known/openid-configuration and no
+      /.well-known/oauth-protected-resource on any UCD host.
+  - surface: API keys
+    checked: >-
+      No developer portal, no key issuance page, no rate-limit tiers. UCD
+      operates no API key programme.
+  - surface: .well-known/security.txt
+    checked: https://www.ucd.ie/.well-known/security.txt returned 404 on 2026-08-30.

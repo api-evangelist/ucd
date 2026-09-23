@@ -1,0 +1,55 @@
+---
+provider: University College Dublin
+providerId: ucd
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes of https://researchrepository.ucd.ie/server/oai/request on
+  2026-08-30. Every code below was produced by an actual request; none is copied
+  from documentation.
+x-operator: institution
+description: >-
+  Error semantics for the one machine-readable interface University College
+  Dublin operates under its own registrable domain — the OAI-PMH 2.0 endpoint of
+  Research Repository UCD. OAI-PMH does not signal protocol failure with HTTP
+  status codes: a malformed or unsatisfiable request returns HTTP 200 carrying an
+  `<error code="...">` element inside the OAI-PMH envelope. Clients that branch on
+  HTTP status alone will read every one of these as success.
+transport:
+  protocol: OAI-PMH 2.0
+  contentType: text/xml
+  errorCarrier: /OAI-PMH/error/@code
+  httpStatusOnProtocolError: 200
+errors:
+  - code: badVerb
+    httpStatus: 200
+    message: Illegal verb
+    trigger: verb is missing, repeated, or not one of the six OAI-PMH verbs.
+    probe: https://researchrepository.ucd.ie/server/oai/request?verb=Bogus
+    observed: '2026-08-30'
+    example: examples/ucd-oai-pmh-badverb-example.xml
+  - code: cannotDisseminateFormat
+    httpStatus: 200
+    message: The metadata format identified by metadataPrefix is not supported.
+    trigger: >-
+      metadataPrefix is not one of the fourteen formats ListMetadataFormats
+      advertises (oai_dc, qdc, dim, didl, mets, mods, ore, rdf, marc, marc21,
+      etdms, uketd_dc, rian_dc, rms_oai).
+    probe: https://researchrepository.ucd.ie/server/oai/request?verb=ListRecords&metadataPrefix=nope
+    observed: '2026-08-30'
+  - code: idDoesNotExist
+    httpStatus: 200
+    message: The value of the identifier argument is unknown in this repository.
+    trigger: GetRecord or ListMetadataFormats with an identifier no record carries.
+    probe: >-
+      https://researchrepository.ucd.ie/server/oai/request?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:researchrepository.ucd.ie:99999999
+    observed: '2026-08-30'
+notFound:
+  - note: >-
+      No RFC 7807 / RFC 9457 problem+json error surface exists anywhere on a UCD
+      host, because UCD publishes no JSON API of its own.
+  - note: >-
+      The DSpace REST API at https://researchrepository.ucd.ie/server/api returns
+      Spring-style JSON error bodies ({timestamp, status, error, message, path});
+      that error vocabulary belongs to DSpace / 4Science, not to UCD, and is not
+      recorded here.

@@ -1,0 +1,168 @@
+openapi: 3.2.0
+info:
+  title: Research Repository UCD — 2.0 OAI PMH API
+  version: '2.0'
+  summary: OAI-PMH 2.0 metadata harvesting interface for Research Repository UCD.
+  description: Research Repository UCD is University College Dublin's open-access institutional repository.
+  contact:
+    name: Research Repository UCD
+    email: research.repository@ucd.ie
+    url: https://researchrepository.ucd.ie/
+  license:
+    name: OAI-PMH 2.0 protocol specification
+    url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+servers:
+- url: https://researchrepository.ucd.ie/server
+  description: Research Repository UCD (DSpace-CRIS 7.6.1) — production
+tags:
+- name: oai pmh
+  description: OAI-PMH 2.0 harvesting verbs.
+paths:
+  /oai/request:
+    get:
+      operationId: oaiRequest
+      summary: Issue an OAI-PMH 2.0 request
+      description: Single OAI-PMH 2.0 endpoint. The `verb` query parameter selects the operation; the remaining parameters are those the selected verb allows. All responses are `text/xml` OAI-PMH envelopes returned with HTTP 200, including protocol errors, which are carried in an `` element rather than an HTTP status.
+      tags:
+      - oai pmh
+      parameters:
+      - name: verb
+        in: query
+        required: true
+        description: The OAI-PMH verb to invoke.
+        schema:
+          type: string
+          enum:
+          - Identify
+          - ListMetadataFormats
+          - ListSets
+          - ListIdentifiers
+          - ListRecords
+          - GetRecord
+        examples:
+          identify:
+            value: Identify
+      - name: metadataPrefix
+        in: query
+        required: false
+        description: Metadata format to disseminate. Required for ListIdentifiers, ListRecords and GetRecord. Fourteen prefixes were observed live.
+        schema:
+          type: string
+          enum:
+          - oai_dc
+          - qdc
+          - dim
+          - didl
+          - mets
+          - mods
+          - ore
+          - rdf
+          - marc
+          - marc21
+          - etdms
+          - uketd_dc
+          - rian_dc
+          - rms_oai
+        examples:
+          dublinCore:
+            value: oai_dc
+      - name: identifier
+        in: query
+        required: false
+        description: 'OAI identifier of a single record. Required for GetRecord. Form: `oai:researchrepository.ucd.ie:10197/<handle-suffix>`.'
+        schema:
+          type: string
+          pattern: ^oai:researchrepository\.ucd\.ie:10197/\d+$
+        examples:
+          thesis:
+            value: oai:researchrepository.ucd.ie:10197/30754
+      - name: set
+        in: query
+        required: false
+        description: Restrict a list request to one set. Set specs observed live take the form `com_10197_<id>` for communities and `col_10197_<id>` for collections.
+        schema:
+          type: string
+        examples:
+          college:
+            value: com_10197_6669
+      - name: from
+        in: query
+        required: false
+        description: Lower bound on record datestamp (granularity YYYY-MM-DDThh:mm:ssZ).
+        schema:
+          type: string
+          format: date-time
+      - name: until
+        in: query
+        required: false
+        description: Upper bound on record datestamp (granularity YYYY-MM-DDThh:mm:ssZ).
+        schema:
+          type: string
+          format: date-time
+      - name: resumptionToken
+        in: query
+        required: false
+        description: Flow-control token returned by an incomplete list response. Observed form `oai_dc////100`, alongside `completeListSize` and `cursor` attributes.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: An OAI-PMH envelope. Successful requests carry the verb element; protocol errors carry an `<error>` element with an OAI-PMH error code — both are returned with HTTP 200 as the protocol requires.
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml
+                description: OAI-PMH 2.0 XML envelope.
+              examples:
+                identify:
+                  summary: verb=Identify (observed 2026-08-30)
+                  externalValue: ../examples/ucd-oai-pmh-identify-example.xml
+                badVerb:
+                  summary: verb=Bogus — protocol error inside a 200 (observed 2026-08-30)
+                  externalValue: ../examples/ucd-oai-pmh-badverb-example.xml
+  /oai/openairecris:
+    get:
+      operationId: oaiOpenAireCris
+      summary: Issue an OAI-PMH request against the OpenAIRE CRIS context
+      description: 'Second OAI-PMH base URL, advertised by the Identify response''s OpenAIRE CERIF `` description with Compatibility `OpenAIRE_Service_Compatibility#1.1`. Serves the OpenAIRE Guidelines for CRIS Managers 1.1 CERIF profile. Verified live on 2026-08-30: `?verb=Identify` returns repositoryName "Research Repository UCD".'
+      tags:
+      - oai pmh
+      parameters:
+      - name: verb
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Identify
+          - ListMetadataFormats
+          - ListSets
+          - ListIdentifiers
+          - ListRecords
+          - GetRecord
+      - name: metadataPrefix
+        in: query
+        required: false
+        description: OpenAIRE CERIF profile prefix.
+        schema:
+          type: string
+        examples:
+          cerif:
+            value: oai_cerif_openaire
+      - name: set
+        in: query
+        required: false
+        schema:
+          type: string
+        examples:
+          persons:
+            value: openaire_cris_persons
+      responses:
+        '200':
+          description: OAI-PMH 2.0 envelope carrying OpenAIRE CERIF 1.1 records.
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml

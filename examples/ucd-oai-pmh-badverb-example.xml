@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?><?xml-stylesheet href='static/style.xsl' type='text/xsl'?>
+<!--
+  API Evangelist capture — University College Dublin (ucd)
+  generated: 2026-08-30
+  method: probed
+  source: https://researchrepository.ucd.ie/server/oai/request?verb=Bogus
+  x-operator: institution
+  Verbatim live response body. Not authored by UCD; captured by API Evangelist.
+-->
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-30T20:28:28Z</responseDate><request>https://researchrepository.ucd.ie/server/oai/request</request><error code="badVerb">Illegal verb</error></OAI-PMH>

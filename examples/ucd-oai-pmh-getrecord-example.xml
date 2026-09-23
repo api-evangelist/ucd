@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?><?xml-stylesheet href='static/style.xsl' type='text/xsl'?>
+<!--
+  API Evangelist capture — University College Dublin (ucd)
+  generated: 2026-08-30
+  method: probed
+  source: https://researchrepository.ucd.ie/server/oai/request?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:researchrepository.ucd.ie:10197/30754
+  x-operator: institution
+  Verbatim live response body. Not authored by UCD; captured by API Evangelist.
+-->
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-30T20:28:28Z</responseDate><request verb="GetRecord" identifier="oai:researchrepository.ucd.ie:10197/30754" metadataPrefix="oai_dc">https://researchrepository.ucd.ie/server/oai/request</request><GetRecord><record><header><identifier>oai:researchrepository.ucd.ie:10197/30754</identifier><datestamp>2025-12-04T17:00:34Z</datestamp><setSpec>com_10197_6673</setSpec><setSpec>com_10197_6668</setSpec><setSpec>col_10197_6709</setSpec></header><metadata><oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:doc="http://www.lyncode.com/xoai" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+   <dc:title>Examining the Need for China to Reform its Capital Maintenance Regime: a comparative study of the shareholders' distribution regimes between the UK and China</dc:title>
+   <dc:creator>Xiong, Xuedan</dc:creator>
+   <dc:contributor>0000-0001-8990-9082</dc:contributor>
+   <dc:subject>Comparative Study</dc:subject>
+   <dc:subject>UK</dc:subject>
+   <dc:subject>China</dc:subject>
+   <dc:subject>Capital maintenance</dc:subject>
+   <dc:description>This Thesis has two objectives: to compare the laws of the UK and China in the sector of shareholders’ distributions in respect of their capacity for creditor protection, with the aim of investigating the need for reformation of the capital maintenance regime in China; and to examine the fit and feasibility of transplanting the UK’s current shareholders’ distribution regimes (including capital maintenance) to China, with the aim of exploring an optimal model of shareholders’ distribution regime in China. This Thesis analyses and compares shareholders’ distribution regimes in both the UK and China, namely, statutory rules in the areas of share repurchase, capital reduction, dividend distribution and financial assistance for the acquisition of a company’s own shares, and the common law of unlawful return of capital. This Thesis investigates the capacity of creditor protection that can be achieved by capital maintenance regimes in both the UK and China through applying a yardstick of company solvency upon and within one year of shareholders’ distribution. The investigation discloses that the capital maintenance regime in the UK, a regime which primarily adopts the net assets test, cannot guarantee company solvency upon shareholders’ distributions. The comparative study and company solvency investigation in China discloses weaknesses of its transplanted capital maintenance regime, such as halfway transplant, incoherence, a simplistic approach, a lack of consideration into company solvency upon distribution, a lack of personal accountability and constraint in creditor protection. Through testing legal transplant theories, this Thesis identifies the following as the contributing factors to these weaknesses: instructions given by authoritarian leaders to establish a legal system rapidly, confusing power distribution between the National People’s Congress and the Supreme People’s Court in law-making and lack of Western legal education received by law-making lawyers and their inability to fully grasp the meaning of transplanted laws. This Thesis recommends that any future transplant in China shall take into consideration the interplay between the transplanted law and the forces of socio-cultural speciality – one of which in this case is the accounting environment. This Thesis concludes that neither the capital maintenance regime nor the solvency-based regime in the UK fits the current accounting environment in China; and that China may adopt a combination of simple balance sheet test and a phased solvency test in its reformation of the shareholders’ distribution regime.</dc:description>
+   <dc:date>2025-12-04T10:29:15Z</dc:date>
+   <dc:date>2025-12-04T10:29:15Z</dc:date>
+   <dc:date>2024 the Author</dc:date>
+   <dc:date>2024</dc:date>
+   <dc:date>2026-05-23</dc:date>
+   <dc:type>Doctoral Thesis</dc:type>
+   <dc:type>Doctor of Philosophy (Ph.D.)</dc:type>
+   <dc:identifier>http://hdl.handle.net/10197/30754</dc:identifier>
+   <dc:language>en</dc:language>
+   <dc:language>en</dc:language>
+   <dc:rights>https://creativecommons.org/licenses/by-nc-nd/3.0/ie/</dc:rights>
+   <dc:format>application/pdf</dc:format>
+   <dc:publisher>University College Dublin. School of Law</dc:publisher>
+</oai_dc:dc></metadata></record></GetRecord></OAI-PMH>

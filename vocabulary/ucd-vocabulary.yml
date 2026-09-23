@@ -1,73 +1,129 @@
 ---
 vocabulary:
-  name: Duchas API Vocabulary (UCD)
-  description: >-
-    Controlled terms used by the Dúchas API serving the National Folklore
-    Collection (Cnuasach Bhéaloideas Éireann) held at University College
-    Dublin. Definitions are derived from the public Dúchas API documentation
-    and data dictionary.
-  version: 0.5.0
+  name: University College Dublin — institutional surface vocabulary
+  providerId: ucd
+  generated: '2026-08-30'
+  method: derived
+  source: >-
+    Derived from live responses observed on 2026-08-30: the OAI-PMH Identify,
+    ListMetadataFormats, ListSets and GetRecord responses at
+    researchrepository.ucd.ie, the DSpace REST root at
+    researchrepository.ucd.ie/server/api, the UCD Digital Library data exports at
+    digital.ucd.ie, and the eduGAIN registry entry for
+    https://sso.ucd.ie/idp/shibboleth. Replaces the 2026-06 file, which was a
+    Dúchas API vocabulary — a DCU-operated contract, not UCD's.
+  version: '1.0'
   terms:
-    - term: CBÉ
+
+    - term: Research Repository UCD
       definition: >-
-        Cnuasach Bhéaloideas Éireann — the Main Manuscript Collection of bound
-        volumes containing stories, accounts, questionnaires and diaries.
-      tags: [collection, manuscript]
-    - term: CBÉS
+        University College Dublin's open-access institutional repository, the
+        OAI-PMH repository whose repositoryIdentifier is
+        researchrepository.ucd.ie and whose administrative contact is
+        research.repository@ucd.ie. 17,167 records were advertised on 2026-08-30.
+      tags: [repository, oai-pmh, institution]
+
+    - term: OAI identifier
       definition: >-
-        The Schools' Collection, material gathered through the Scéim na Scol
-        scheme by primary-school pupils in 1937-1939.
-      tags: [collection, schools]
-    - term: CBÉG
-      definition: The Photographic Collection of the National Folklore Collection.
-      tags: [collection, photographs]
-    - term: CBÉD
-      definition: The Persons Database holding normalized person records.
-      tags: [collection, persons]
-    - term: Volume
-      definition: A bound volume, copybook package or volume of manuscript material.
-      tags: [object, manuscript]
-    - term: Part
-      definition: A subdivision of a volume grouping related items.
-      tags: [object, manuscript]
-    - term: Item
-      definition: An individual unit of folklore content within a part.
-      tags: [object, manuscript]
-    - term: Page
-      definition: A single page within a volume, optionally with transcripts.
-      tags: [object, manuscript]
-    - term: Photograph
-      definition: A photographic record with archival and digitization metadata.
-      tags: [object, photographs]
-    - term: Person
-      definition: A normalized record for a collector, informant or relevant person.
-      tags: [object, persons]
-    - term: Status
+        The record key used by the repository, of the form
+        `oai:researchrepository.ucd.ie:10197/<n>`, where 10197 is UCD's Handle
+        prefix. Observed sample: oai:researchrepository.ucd.ie:10197/30754.
+      tags: [identifier, oai-pmh]
+
+    - term: Handle 10197
       definition: >-
-        Editorial status 0-4; 0 is newly ingested and 4 is publication-ready.
-        A privileged field.
-      tags: [field, editorial, privileged]
-    - term: DateAccuracy
+        The Handle System naming authority under which UCD mints persistent
+        identifiers for repository items. UCD mints Handles, not DataCite DOIs;
+        DOIs appearing in records are publisher DOIs.
+      tags: [identifier, persistence]
+
+    - term: setSpec
       definition: >-
-        Qualifier on a date value — APPROX (approximate), INFER (inferred) or
-        QUESTION (questionable).
-      tags: [field, date]
-    - term: Copyright
+        OAI-PMH set selector for the repository's organisational hierarchy.
+        `com_10197_<n>` denotes a DSpace community (e.g. com_10197_6669,
+        "College of Arts and Humanities"); `col_10197_<n>` denotes a collection.
+      tags: [oai-pmh, sets]
+
+    - term: metadataPrefix
       definition: >-
-        Copyright code for a photograph — CBE, OTH (other), NOT (not in
-        copyright) or UNK (unknown).
-      tags: [field, photographs, rights]
-    - term: ContentType
+        Metadata format selector. Fourteen were advertised live on 2026-08-30:
+        oai_dc, qdc, dim, didl, mets, mods, ore, rdf, marc, marc21, etdms,
+        uketd_dc, rian_dc, rms_oai.
+      tags: [oai-pmh, metadata]
+
+    - term: rian_dc
       definition: >-
-        Type of manuscript item — SEAN (seanchas), CÍN-LAE (diary), CEIST
-        (questionnaire) or COMH (other).
-      tags: [field, manuscript]
-    - term: LogainmID
-      definition: Identifier from the Logainm.ie placenames database for Irish locations.
-      tags: [field, identifier, geospatial]
-    - term: ViafID
-      definition: Virtual International Authority File identifier for a person.
-      tags: [field, identifier, person]
-    - term: ExtraInfoStatus
-      definition: Publication state of supplementary information — EDIT or PUB.
-      tags: [field, editorial]
+        A metadata format supported for RIAN, the Irish national aggregator of
+        open-access research output, which harvests Irish institutional
+        repositories.
+      tags: [metadata, ireland, aggregation]
+
+    - term: uketd_dc / etdms
+      definition: >-
+        Thesis metadata formats (UK Electronic Theses and Dissertations Dublin
+        Core, and the ETD Metadata Standard) supported so doctoral theses can be
+        harvested by national thesis services.
+      tags: [metadata, theses]
+
+    - term: OpenAIRE CRIS
+      definition: >-
+        A second OAI-PMH base URL,
+        https://researchrepository.ucd.ie/server/oai/openairecris, advertised in
+        the Identify response with Compatibility
+        OpenAIRE_Service_Compatibility#1.1, serving the OpenAIRE Guidelines for
+        CRIS Managers 1.1 CERIF profile.
+      tags: [oai-pmh, openaire, cerif]
+
+    - term: DSpace-CRIS
+      definition: >-
+        The repository software running the deployment — DSpace 7.6.1 with
+        cris-2023.02.05, as reported by the REST root. Supplied and hosted by
+        4Science; researchrepository.ucd.ie CNAMEs to ucd7.4science.cloud. The
+        software and hosting are the vendor's; the repository is UCD's.
+      tags: [platform, tenant, vendor]
+
+    - term: Edugate
+      definition: >-
+        The Irish research and education identity federation, operated by HEAnet
+        and connected to eduGAIN. UCD's Identity Provider entity
+        (https://sso.ucd.ie/idp/shibboleth, scope ucd.ie) is registered there
+        under registration authority http://www.heanet.ie.
+      tags: [identity, saml, federation]
+
+    - term: UCD Digital Library
+      definition: >-
+        UCD Library's digital cultural-heritage service at digital.ucd.ie. As of
+        2026-08-30 it is a declared temporary access website built on
+        CollectionBuilder-CSV, pending procurement of a new access and
+        preservation platform in 2026. The IIIF Image and Presentation APIs, the
+        Geospatial Data API and the unAPI endpoint catalogued in June 2026 are
+        gone — /help/, /api, /iiif and /view/ all return 404.
+      tags: [library, cultural-heritage, open-data]
+
+    - term: Collection data export
+      definition: >-
+        The machine-readable surface the temporary Digital Library site does
+        offer: static Dublin Core metadata as CSV and JSON, plus facets,
+        subjects and a TimelineJS export, linked from
+        https://digital.ucd.ie/data.html. Files, not an API.
+      tags: [open-data, static]
+
+    - term: Dúchas
+      definition: >-
+        The digitisation project for the National Folklore Collection (Cnuasach
+        Bhéaloideas Éireann), which is held at UCD. The website and API at
+        duchas.ie are built and operated by the Gaois research group, Fiontar &
+        Scoil na Gaeilge, Dublin City University. The collection is UCD's; the
+        platform and the API contract are DCU's. The v0.5 prerelease API is
+        withdrawn — every path returns HTTP 500 and the documentation states it
+        "is no longer available".
+      tags: [tenant, partner, withdrawn]
+
+    - term: CBÉ / CBÉS / CBÉG / CBÉD
+      definition: >-
+        The four National Folklore Collection databases — Main Manuscript
+        Collection, Schools' Collection, Photographic Collection and Persons
+        Database. Retained here as institutional vocabulary only; the API that
+        served them is DCU-operated and withdrawn, and no contract for it is
+        held in this repository.
+      tags: [cultural-heritage, tenant]

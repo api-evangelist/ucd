@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: University College Dublin
 providerId: ucd
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reconciled: false
 tags:
 - Education
@@ -12,10 +12,15 @@ tags:
 - University
 - Rate Limiting
 description: >-
-  University College Dublin does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
+  University College Dublin publishes no rate-limit table at all, because it runs no API
+  programme. The one keyless institution-operated interface — the OAI-PMH 2.0 endpoint at
+  https://researchrepository.ucd.ie/server/oai/request — advertises no quota, no
+  X-RateLimit headers and no Retry-After; it does apply OAI-PMH flow control, returning a
+  resumptionToken with completeListSize 17167 and a 100-record page on ListIdentifiers
+  (observed 2026-08-30), which is pagination rather than a rate limit. Harvest politely and
+  contact research.repository@ucd.ie for bulk access. The IIIF endpoints cited in the
+  2026-06-03 version of this file no longer exist; the UCD Digital Library platform was
+  decommissioned and digital.ucd.ie now serves static data files.
 notes: Confirm per-service limits with each API's documentation; harvest responsibly.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/ucd/refs/heads/main/apis.yml

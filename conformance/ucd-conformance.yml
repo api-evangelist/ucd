@@ -1,0 +1,187 @@
+---
+provider: University College Dublin
+providerId: ucd
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes on 2026-08-30 of researchrepository.ucd.ie, sso.ucd.ie,
+  digital.ucd.ie and the eduGAIN technical registry
+  (technical.edugain.org/api.php?action=list_entities). No claim below is taken
+  from prose; every standard recorded as conformant points at a response that
+  was fetched and read.
+regime: education
+regimeStandards:
+  - scim
+  - lti
+  - oneroster
+  - ed-fi
+  - caliper
+  - qti
+  - oai-pmh
+  - shibboleth
+  - saml
+  - orcid
+  - datacite
+  - crossref
+description: >-
+  Domain-standard conformance for University College Dublin, evaluated against the
+  Kin Score `education` regime standards list. REWARD-ONLY: only standards evidenced
+  by a live machine-readable response are recorded as conformant. Standards not found
+  are listed separately and explicitly below, so their absence is a measurement rather
+  than a silence.
+
+standards:
+
+  - standard: oai-pmh
+    name: Open Archives Initiative Protocol for Metadata Harvesting 2.0
+    status: conformant
+    confidence: high
+    operator: institution
+    evidence:
+      url: https://researchrepository.ucd.ie/server/oai/request?verb=Identify
+      status: 200
+      location: /OAI-PMH/Identify/protocolVersion
+      observed: >-
+        protocolVersion 2.0; repositoryName "Research Repository UCD"; baseURL
+        https://researchrepository.ucd.ie/server/oai/request; adminEmail
+        research.repository@ucd.ie; granularity YYYY-MM-DDThh:mm:ssZ;
+        earliestDatestamp 2007-08-22T16:46:33Z; deletedRecord transient;
+        repositoryIdentifier researchrepository.ucd.ie with sampleIdentifier
+        oai:researchrepository.ucd.ie:10197/1234. All six verbs (Identify,
+        ListMetadataFormats, ListSets, ListIdentifiers, ListRecords, GetRecord)
+        returned HTTP 200 with a well-formed OAI-PMH envelope. ListIdentifiers
+        reported completeListSize 17167 and issued a resumptionToken.
+    artifact: openapi/ucd-oai-pmh-openapi.yml
+    examples:
+      - examples/ucd-oai-pmh-identify-example.xml
+      - examples/ucd-oai-pmh-getrecord-example.xml
+      - examples/ucd-oai-pmh-listmetadataformats-example.xml
+
+  - standard: oai-pmh
+    name: OAI-PMH protocol error handling
+    status: conformant
+    confidence: high
+    operator: institution
+    evidence:
+      url: https://researchrepository.ucd.ie/server/oai/request?verb=Bogus
+      status: 200
+      location: /OAI-PMH/error/@code
+      observed: >-
+        Three error conditions were exercised and each returned the correct
+        OAI-PMH error code inside an HTTP 200 envelope, as the protocol
+        requires rather than an HTTP error status: verb=Bogus -> badVerb
+        ("Illegal verb"); metadataPrefix=nope -> cannotDisseminateFormat;
+        identifier=oai:researchrepository.ucd.ie:99999999 -> idDoesNotExist.
+    artifact: errors/ucd-errors.yml
+    examples:
+      - examples/ucd-oai-pmh-badverb-example.xml
+
+  - standard: saml
+    name: SAML 2.0 Web Browser SSO
+    status: conformant
+    confidence: high
+    operator: institution
+    evidence:
+      url: https://technical.edugain.org/api.php?action=list_entities&format=json
+      status: 200
+      location: entity id 684529
+      observed: >-
+        UCD operates a SAML 2.0 Identity Provider registered in eduGAIN with
+        entityID https://sso.ucd.ie/idp/shibboleth, roledesc IDPSSODescriptor,
+        registration authority http://www.heanet.ie (Edugate, the Irish
+        national federation), federation code EDUGATE, scope ucd.ie, display
+        names "University College Dublin" / "An Coláiste Ollscoile, Baile Átha
+        Cliath", entity categories 4;11;76, first seen 2017-04-13. It is one of
+        60 Edugate entities visible in eduGAIN.
+    artifact: authentication/ucd-authentication.yml
+
+  - standard: shibboleth
+    name: Shibboleth Identity Provider (urn:mace:shibboleth:metadata:1.0 scoped attributes)
+    status: conformant
+    confidence: high
+    operator: institution
+    evidence:
+      url: https://sso.ucd.ie/idp/shibboleth
+      status: 200
+      location: HTTP response headers and eduGAIN entity 684529
+      observed: >-
+        The entityID path https://sso.ucd.ie/idp/shibboleth and the registry's
+        shibmd Scope value ucd.ie identify a Shibboleth IdP, and the host
+        answers on the Shibboleth IdP servlet path with a Jetty-backed 404 page
+        for unknown IdP paths. SIRTFI is asserted for the entity
+        (sirtfi_status 1).
+    caveat: >-
+      IMPORTANT — the URL https://sso.ucd.ie/idp/shibboleth returns HTTP 200 with
+      Content-Type application/xml, but the body is the STOCK Shibboleth IdP
+      example metadata that ships with the software: entityID
+      "https://idp.exanple.com/idp" (sic), Scope "example.com" and endpoint
+      Locations on https://localhost/. It is NOT UCD's metadata and must never be
+      consumed or counted as such — a status-code-only check would credit it. The
+      authoritative machine-readable metadata for this entity is the Edugate /
+      eduGAIN federation aggregate, which is why the IdentityFederation pointer in
+      apis.yml goes to the eduGAIN registry rather than to that URL.
+
+  - standard: orcid
+    name: ORCID researcher identifiers
+    status: conformant
+    confidence: medium
+    operator: institution
+    evidence:
+      url: https://researchrepository.ucd.ie/server/oai/request?verb=GetRecord&metadataPrefix=dim&identifier=oai:researchrepository.ucd.ie:10197/30754
+      status: 200
+      location: /OAI-PMH/GetRecord/record/metadata/dim:dim/dim:field[@qualifier="orcid"]
+      observed: >-
+        The dim metadata format emits qualified ORCID fields —
+        dim:field mdschema="dc" element="contributor" qualifier="orcid",
+        plus cris.virtual.orcid and cris.virtualsource.orcid. The same iD
+        (0000-0001-8990-9082) appears unqualified as a dc:contributor in the
+        oai_dc rendering of the record.
+    caveat: >-
+      Confidence is medium, not high: the ORCID plumbing is a DSpace-CRIS
+      platform capability on a 4Science-hosted deployment, and the ORCID value
+      is present in the metadata rather than being served by a UCD-authored
+      integration. In oai_dc it is emitted as a bare dc:contributor with no
+      qualifier, which is not a conformant way to publish an iD.
+
+standards_not_found:
+  - standard: scim
+    checked: >-
+      No SCIM 2.0 service provider configuration was found. sso.ucd.ie serves a
+      Shibboleth IdP only; there is no public /scim/v2/ServiceProviderConfig.
+  - standard: lti
+    checked: >-
+      No public LTI tool or platform registration surface found on any UCD host.
+      UCD's virtual learning environment was not probed further because it is
+      behind institutional authentication; no vendor is asserted here.
+  - standard: oneroster
+    checked: No IMS Global / 1EdTech OneRoster endpoint found on any UCD host.
+  - standard: ed-fi
+    checked: Ed-Fi is a US K-12 data standard; not applicable and not found.
+  - standard: caliper
+    checked: No IMS Caliper Analytics sensor or event store surface found.
+  - standard: qti
+    checked: No public QTI assessment item bank or delivery endpoint found.
+  - standard: datacite
+    checked: >-
+      Research Repository UCD mints Handle identifiers (hdl 10197/*), not DataCite
+      DOIs. DOIs that appear in repository records are publisher DOIs (e.g.
+      10.1016/j.jmir.2018.11.002 from Elsevier), not UCD-minted, so no DataCite
+      conformance is claimed.
+  - standard: crossref
+    checked: >-
+      No UCD Crossref member prefix or deposit surface found. UCD is not a
+      publisher of record for the DOIs in its repository.
+
+notes: >-
+  Two hosts carry every conformance claim above and they have different
+  operators. sso.ucd.ie is UCD's own identity infrastructure, hosted on HEAnet
+  (it CNAMEs to dockcl02-prod-lb.heanet.ie) — the national education and research
+  network that also operates the Edugate federation, which is a sector hosting
+  arrangement rather than a vendor contract; the entityID, scope and federation
+  registration are UCD's. Under
+  researchrepository.ucd.ie is a DSpace-CRIS 7.6.1 (cris-2023.02.05) deployment
+  that CNAMEs to ucd7.4science.cloud / ucd-researchrepository.prod.4science.cloud
+  — the platform is hosted by 4Science. The OAI-PMH interface, repository
+  identifier, content and administrative contact are UCD's and are recorded as
+  x-operator: institution; the DSpace REST API served from the same deployment is
+  4Science's generic contract and is recorded as x-operator: tenant.
