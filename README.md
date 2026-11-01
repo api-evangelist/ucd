@@ -1,4 +1,4 @@
-# University College Dublin (ucd)
+# University College Dublin
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,48 +64,125 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-University College Dublin (UCD) is Ireland's largest university and ranks #126 in the QS World University Rankings 2025. This repository catalogs UCD's public, machine-readable developer/API footprint as an APIs.json provider profile. UCD has no central developer portal; its real programmatic surface is concentrated in library and cultural-heritage systems — the UCD Digital Library (IIIF and geospatial data services), the DSpace-based Research Repository UCD (OAI-PMH and REST), and the Dúchas API for the National Folklore Collection.
+University College Dublin is Ireland's largest university, a public research institution in Belfield, Dublin. It operates no API programme: there is no developer portal, no API key issuance, no OAuth authorization server and no first-party OpenAPI anywhere on a ucd.ie host. What it does operate, verified live on 2026-08-30, is three real machine-readable surfaces — an OAI-PMH 2.0 harvesting endpoint for Research Repository UCD (17,167 records, fourteen metadata formats, plus an OpenAIRE CRIS base URL), a SAML 2.0 Shibboleth Identity Provider registered in Edugate/eduGAIN as https://sso.ucd.ie/idp/shibboleth with scope ucd.ie, and static Dublin Core collection data exports from the UCD Digital Library. Everything else is somebody else's engineering under UCD's name: the repository platform is DSpace-CRIS hosted by 4Science, library discovery is Serials Solutions, and the Dúchas API for the National Folklore Collection — the collection is UCD's, the platform is DCU's — was withdrawn by its operator and now returns HTTP 500 on every path. This profile was re-run under the university pipeline on 2026-08-30 and the previously catalogued Dúchas contracts were removed.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/ucd/refs/heads/main/apis.yml
-- Run it with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=ucd-api-evangelist&utm_content=repo
+**Areas:** University · Higher Education · Education · Ireland · Europe · Public Research University · Research Repository · Open Access · OAI-PMH · Identity Federation · Cultural Heritage · Open Data
 
-## Type
+## University College Dublin on APIs.io
 
-- Index / Consumer / 3rd-Party
+Everything profiled for University College Dublin is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ucd/](https://apis.io/providers/ucd/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-Education, Higher Education, University, Ireland, Library, Digital Library, IIIF, Open Access, Cultural Heritage
+- [University College Dublin Identity Provider (Shibboleth / Edugate / eduGAIN)](https://apis.io/apis/ucd/identity-federation/) — UCD's SAML 2.0 Shibboleth Identity Provider, and the institution's only authentication surface it runs itself. It is machine-readable by definition — a…
+- [UCD Digital Library collection data exports](https://apis.io/apis/ucd/digital-library-data/) — Static, keyless Dublin Core metadata exports for UCD Library's digital cultural-heritage collections — metadata as CSV and JSON, plus facets, subjects and a…
+- [Research Repository UCD — DSpace-CRIS REST API (4Science)](https://apis.io/apis/ucd/dspace-rest/) — A live DSpace-CRIS 7.6.1 HAL REST API on UCD's branded repository host, advertising roughly ninety link relations including items, collections, communities,…
+- [Dúchas API — National Folklore Collection (operated by DCU)](https://apis.io/apis/ucd/duchas/) — The National Folklore Collection (Cnuasach Bhéaloideas Éireann) is held at UCD; the Dúchas digitisation platform and its API are built and operated by DCU's…
+- [UCD Library discovery (Serials Solutions / Clarivate)](https://apis.io/apis/ucd/library-discovery/) — UCD Library's discovery layer runs on Serials Solutions (Clarivate/ProQuest) under a customer key, not on a UCD host. It exposes a search interface for…
+- [University College Dublin OAI PMH API](https://apis.io/apis/ucd/ucd-oai-pmh-api/) — OAI-PMH 2.0 harvesting verbs.
 
-## APIs
+### Published properties
 
-- **UCD Digital Library Image & Presentation API (IIIF)** — IIIF Image API 2.0 and Presentation API 2.0 for digitized objects and collections. Docs: https://digital.ucd.ie/help/
-- **UCD Digital Library Geospatial Data API** — boundary/search geodata for map visualisations, plus an unAPI metadata endpoint. Docs: https://digital.ucd.ie/help/
-- **Research Repository UCD (DSpace OAI-PMH / REST)** — open-access publications and theses metadata via OAI-PMH and the DSpace REST API. Docs: https://libguides.ucd.ie/RRU/usage
-- **Dúchas API (National Folklore Collection, UCD)** — JSON access to the National Folklore Collection; requires an API key. Docs: https://docs.gaois.ie — Source docs: https://github.com/gaois/DuchasAPI-docs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans / Rate Limits / FinOps
+#### Vocabulary (1)
 
-- Plans: [plans/ucd-plans-pricing.yml](plans/ucd-plans-pricing.yml)
-- Rate Limits: [rate-limits/ucd-rate-limits.yml](rate-limits/ucd-rate-limits.yml)
-- FinOps: [finops/ucd-finops.yml](finops/ucd-finops.yml)
+The provider's domain terms, defined.
 
-## Timestamps
+- [Duchas API Vocabulary (UCD)](https://apis.io/vocabularies/ucd/ucd-vocabulary/)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+#### Examples (1)
 
-## Common Properties
+Example requests and responses.
 
-- Website: https://www.ucd.ie/
-- GitHub: https://github.com/University-College-Dublin
-- LinkedIn: https://www.linkedin.com/school/university-college-dublin/
-- Developer Portal (Digital Library help): https://digital.ucd.ie/help/
+- [Ucd Digital Library Facets Example](https://apis.io/examples/ucd/ucd-digital-library-facets-example/)
 
-## Notes
+#### Security (2)
 
-All entries reflect URLs verified on 2026-06-03; no endpoints were fabricated. The official ucd.ie site returns 403 to scripted requests (bot protection) but resolves in a browser. The Dúchas API base returns HTTP 500 without a key/parameters, confirming it is live but gated. The `data.ucd.ie` host cited as the IIIF/geospatial image base in third-party documentation did not resolve during probing, and `digital.ucd.ie/research/index.php` now returns 404 — IIIF/geospatial services are documented but not all directly reachable from published URLs. UCD offers no unified self-service API program; administrative and identity systems require institutional affiliation.
+Authentication, trust centre, and vulnerability disclosure.
 
-## Maintainers
+- [Ucd Authentication](https://apis.io/security/ucd/ucd-authentication/)
+- [Ucd Domain Security](https://apis.io/security/ucd/ucd-domain-security/)
 
-- Kin Lane — kin@apievangelist.com
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ucd Plans Pricing](https://apis.io/plans/ucd/ucd-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ucd Rate Limits](https://apis.io/rate-limits/ucd/ucd-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ucd Finops](https://apis.io/finops/ucd/ucd-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ucd.ie/)
+- [Documentation](https://libguides.ucd.ie/RRU/usage)
+- [Support](https://www.ucd.ie/itservices/ourservices/researchit/)
+- [Blog](https://www.ucd.ie/newsandopinion/)
+- [Terms of service](https://www.ucd.ie/legal/)
+- [Privacy policy](https://www.ucd.ie/privacy/)
+- [GitHub](https://github.com/University-College-Dublin)
+
+## API Evangelist rating
+
+**Kin Score 32.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 47.6 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 26.3 |
+
+**Agent readiness 24.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ucd/](https://apis.io/providers/ucd/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for University College Dublin: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ucd/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
